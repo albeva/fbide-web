@@ -48,20 +48,22 @@ const downloads = [
 
                     <div class="download-card">
                         <div class="meta">
-                            <h3>Source &amp; other files</h3>
-                            <p class="text-muted small mb-1">Source archives, prior builds, full release notes</p>
-                            <p class="mb-0">Every release artefact is mirrored on the GitHub releases page.</p>
-                        </div>
-                        <a class="btn btn-outline-secondary" href={`${release.githubRepo}/releases`} rel="noopener noreferrer" target="_blank">GitHub</a>
-                    </div>
-
-                    <div class="download-card">
-                        <div class="meta">
                             <h3>Legacy releases <span class="badge text-bg-secondary">Deprecated</span></h3>
                             <p class="text-muted small mb-1">FBIde 0.3.x / 0.4.x</p>
                             <p class="mb-0">Original SourceForge bundles, kept for reference. Windows XP and up.</p>
                         </div>
                         <a class="btn btn-outline-secondary" href="/download/legacy.html">Browse</a>
+                    </div>
+
+                    <h2 class="h4 mt-4">Source code</h2>
+
+                    <div class="download-card">
+                        <div class="meta">
+                            <h3>Source archives &amp; other files</h3>
+                            <p class="text-muted small mb-1">Source tarballs, prior builds, full release notes</p>
+                            <p class="mb-0">Every release artefact is mirrored on the GitHub releases page.</p>
+                        </div>
+                        <a class="btn btn-outline-secondary" href={`${release.githubRepo}/releases`} rel="noopener noreferrer" target="_blank">GitHub</a>
                     </div>
                 </div>
 
