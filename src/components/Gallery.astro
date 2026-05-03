@@ -2,7 +2,15 @@
 // Screenshot gallery — thumbnails open a Bootstrap modal showing the
 // full image. Image set is configured in src/data/gallery.json so the
 // caller doesn't need to edit the component to swap assets.
-import gallery from '../data/gallery.json';
+import galleryData from '../data/gallery.json';
+
+interface GalleryItem {
+    src: string;
+    caption: string;
+    thumb?: string;
+}
+
+const gallery = galleryData as GalleryItem[];
 ---
 <section id="gallery" class="bg-white border-top">
     <div class="container">
