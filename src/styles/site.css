@@ -164,21 +164,24 @@ article .date {
 .gallery-strip {
     display: flex;
     justify-content: center;
-    gap: 0.4rem;
+    gap: 0.35rem;
     margin: 0;
     padding: 0.6rem 0.75rem;
-    overflow-x: auto;
+    overflow: hidden;
     border-top: 1px solid #e5e5e5;
     background: #f8f9fa;
 }
 
+/* Each thumb takes an equal share of the remaining row width so the
+   strip exactly matches the image area above (no horizontal scroll). */
 .gallery-strip li {
-    flex: 0 0 auto;
+    flex: 1 1 0;
+    min-width: 0;
 }
 
 .gallery-strip-thumb {
-    width: 88px;
-    height: 60px;
+    width: 100%;
+    aspect-ratio: 838 / 630;
     padding: 0;
     border: 2px solid transparent;
     background: #fff;
