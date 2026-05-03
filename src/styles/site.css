@@ -53,17 +53,6 @@ main {
     height: auto;
 }
 
-/* Bootstrap's default .btn baseline metrics leave text a hair above the
-   visual centre on large buttons — flex layout pins the label to the
-   geometric centre of the box regardless of font ascender height. */
-.hero .btn-lg {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    line-height: 1;
-    min-height: 3rem;
-}
-
 /* --- Section spacing --------------------------------------------------- */
 
 section {

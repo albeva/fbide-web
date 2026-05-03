@@ -1,11 +1,10 @@
 [
-  { "src": "/images/screenshots/fbide-codebrowser.png",     "caption": "Integrated code browser" },
-  { "src": "/images/screenshots/fbide-theme-obsidian.png",  "caption": "Obsidian theme" },
-  { "src": "/images/screenshots/fbide-compile-log.png",     "caption": "Compile log" },
-  { "src": "/images/screenshots/fbide-error-reporting.png", "caption": "Syntax error reporting" },
-  { "src": "/images/screenshots/fbide-format-options.png",  "caption": "Formatting options" },
-  { "src": "/images/screenshots/fbide-quickrun.png",        "caption": "Quick run" },
-  { "src": "/images/screenshots/fbide-settings.png",        "caption": "Settings dialog" },
-  { "src": "/images/screenshots/fbide-theme-classic.png",   "caption": "Classic theme" },
-  { "src": "/images/screenshots/fbide-theme-matrix.png",    "caption": "Matrix theme" }
+  { "src": "/images/screenshots/about.png",          "caption": "About" },
+  { "src": "/images/screenshots/browser.png",         "caption": "Browser" },
+  { "src": "/images/screenshots/code-formatter.png",  "caption": "Code Formatter" },
+  { "src": "/images/screenshots/dark-theme.png",      "caption": "Dark Theme" },
+  { "src": "/images/screenshots/light-theme.png",     "caption": "Light Theme" },
+  { "src": "/images/screenshots/error-console.png",   "caption": "Error Console" },
+  { "src": "/images/screenshots/panels.png",          "caption": "Panels" },
+  { "src": "/images/screenshots/settings.png",        "caption": "Settings" }
 ]
