@@ -8,14 +8,14 @@ const downloads = [
         recommended: true,
         href: release.downloads.win64,
         filename: `fbide-${release.version}-win64.zip`,
-        note: 'Recommended for modern Windows 10 / 11 systems.',
+        note: 'Recommended build. Runs on 64-bit Windows 8.1, 10, and 11.',
     },
     {
         label: 'FBIde for Windows (32-bit)',
         recommended: false,
         href: release.downloads.win32,
         filename: `fbide-${release.version}-win32.zip`,
-        note: 'Alternative download for 32-bit Windows installations.',
+        note: 'Alternative 32-bit build. Also requires Windows 8.1, 10, or 11 — not for legacy XP / 7 systems.',
     },
 ];
 ---
@@ -29,6 +29,7 @@ const downloads = [
             <div class="row g-4">
                 <div class="col-md-8">
                     <h1 class="h2">Download FBIde <small class="text-muted">{release.version}</small></h1>
+                    <p class="text-muted small mb-3">Released {release.releaseDate}</p>
 
                     {release.isPrerelease && (
                         <div class="alert alert-warning small" role="alert">
