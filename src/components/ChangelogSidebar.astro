@@ -22,7 +22,7 @@ const entries = (await getCollection('changelog')).sort((a, b) =>
                 <li>
                     <a
                         class={`changelog-sidebar-link${entry.data.version === activeVersion ? ' active' : ''}`}
-                        href={`/changelog/${entry.id}.html`}
+                        href={`/changelog/${entry.data.version}.html`}
                         aria-current={entry.data.version === activeVersion ? 'page' : undefined}
                     >
                         <span class="version">{entry.data.version}</span>

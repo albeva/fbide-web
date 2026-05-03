@@ -37,10 +37,11 @@ const downloads = [
                             <div class="meta">
                                 <h3>{dl.label} {dl.recommended && (<span class="badge text-bg-success">Recommended</span>)} {release.isPrerelease && (<span class="badge text-bg-warning">Pre-release</span>)}</h3>
                                 <p class="text-muted small mb-1">
-                                    <a href={`/changelog/${release.version}.html`}>v{release.version} release notes</a>
+                                    v{release.version}
                                     &middot; released {release.releaseDate}
+                                    &middot; <a href={`/changelog/${release.version}.html`}>changelog</a>
                                 </p>
-                                <p class="mb-0">{dl.note}{release.isPrerelease ? ' Pre-release build — expect rough edges.' : ''}</p>
+                                <p class="mb-0">{dl.note}</p>
                             </div>
                             <a class="btn btn-primary" href={dl.href}>Download</a>
                         </div>

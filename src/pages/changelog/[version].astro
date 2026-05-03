@@ -8,8 +8,11 @@ import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
     const entries = await getCollection('changelog');
+    // Use the frontmatter `version` as the URL slug (Astro strips dots
+    // from the filename-derived id, which would mangle '0.5.0.beta-1'
+    // into '050beta-1'). Frontmatter passes through verbatim.
     return entries.map((entry) => ({
-        params: { version: entry.id },
+        params: { version: entry.data.version },
         props: { entry },
     }));
 }
