@@ -61,6 +61,14 @@ main {
     line-height: 1;
 }
 
+/* Show the icon for the *opposite* of the active theme — that's the
+   theme the button will switch you to. CSS-driven so the first paint
+   already matches data-bs-theme (set inline before paint), avoiding a
+   moon -> sun flicker for dark-mode users. */
+.theme-icon-dark { display: none; }
+[data-bs-theme="dark"] .theme-icon-light { display: none; }
+[data-bs-theme="dark"] .theme-icon-dark  { display: inline-block; }
+
 /* --- Hero band --------------------------------------------------------- */
 
 .hero {
