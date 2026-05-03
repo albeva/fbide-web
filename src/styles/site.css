@@ -146,6 +146,12 @@ article .date {
     max-width: min(95vw, 900px);
 }
 
+/* Clip child backgrounds (the strip's grey footer) to the dialog's
+   rounded shape so the bottom corners match the rounded header. */
+.modal-gallery .modal-content {
+    overflow: hidden;
+}
+
 .gallery-main {
     background: var(--fbide-bg);
     text-align: center;
