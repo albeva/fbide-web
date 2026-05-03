@@ -14,14 +14,14 @@ import release from '../data/release.json';
                 <div class="col-md-4">
                     <h2>About</h2>
                     <p>
-                        FBIde is an open-source <abbr title="Integrated Development Environment">IDE</abbr>
-                        for the <a href="https://www.freebasic.net/">FreeBASIC</a> compiler. It lets you
-                        edit, compile, and run your FreeBASIC programs without ever touching the command
-                        line.
+                        FBIde is a simple editor built specifically for
+                        <a href="https://www.freebasic.net/">FreeBASIC</a>. The goal is a
+                        seamless, clutter-free development environment — your code on screen,
+                        the tools you need a keystroke away, and nothing in your way.
                     </p>
                     <p>
-                        The current rewrite is a clean modern C++23 codebase built on wxWidgets and
-                        the Scintilla editor component. Source, issues, and releases live on
+                        Free, open source, and self-contained: drop the zip into any folder
+                        and run. Source and issues live on
                         <a href={release.githubRepo}>GitHub</a>.
                     </p>
                 </div>
@@ -29,13 +29,12 @@ import release from '../data/release.json';
                 <div class="col-md-4">
                     <h2>Features</h2>
                     <ul>
-                        <li>FreeBASIC source editor with syntax highlighting, auto-indent, code folding.</li>
-                        <li>One-key compile, run, and quick-run with parsed compiler errors.</li>
-                        <li>Themable editor — Borland, Modern, Obsidian, Ocean, Twilight, and more.</li>
-                        <li>Sub / Function browser and code formatter with case conversion.</li>
-                        <li>Find and replace, recent files, multi-tab interface.</li>
-                        <li>Localised UI in English plus a dozen translations.</li>
-                        <li>Context-sensitive help — CHM on Windows with a wiki fallback.</li>
+                        <li>One-key compile, run, and quick-run, with compiler errors parsed and clickable.</li>
+                        <li>Sub / Function browser with live navigation — covers <code>SUB</code>, <code>FUNCTION</code>, macros, and <code>#include</code> files.</li>
+                        <li>Code formatter: keyword case conversion and full block reformatting.</li>
+                        <li>Smart auto-indent that closes blocks for you — <code>DO</code> → <code>LOOP</code>, <code>IF</code> → <code>END IF</code>, …</li>
+                        <li>Themed editor with bundled palettes (Borland, Modern, Obsidian, Ocean, Twilight, …).</li>
+                        <li>Context-sensitive help — CHM lookup on Windows, FreeBASIC wiki fallback.</li>
                     </ul>
                 </div>
 
