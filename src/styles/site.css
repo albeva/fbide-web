@@ -33,6 +33,14 @@
     --fbide-link-hover-bg:#2e3338;
 }
 
+/* Reserve a scrollbar gutter even when content fits in the viewport.
+   Without this, navigating between a long page (scrollbar visible)
+   and a short one (no scrollbar) shifts the layout by ~17px and the
+   navbar buttons appear to jerk. */
+html {
+    scrollbar-gutter: stable;
+}
+
 body {
     background: var(--fbide-bg);
     color: var(--fbide-text);
