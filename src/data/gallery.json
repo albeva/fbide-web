@@ -7,5 +7,6 @@
   { "src": "/images/screenshots/light-theme.png",             "caption": "Light Theme" },
   { "src": "/images/screenshots/error-console.png",           "caption": "Error Console" },
   { "src": "/images/screenshots/panels.png",                  "caption": "Panels" },
+  { "src": "/images/screenshots/multi-lingual.png",           "caption": "Multi-lingual" },
   { "src": "/images/screenshots/settings.png",                "caption": "Settings" }
 ]
