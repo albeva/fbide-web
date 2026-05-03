@@ -1,0 +1,115 @@
+# ----------------------------------------------------------------------------
+# .htaccess for the static Astro build of fbide.freebasic.net.
+#
+# Astro emits .html files (build.format = "file"), so the basics already
+# work without rewrites. This file adds:
+#   - extensionless URL routing (/download <-> /download.html)
+#   - HTTPS + canonical host redirect
+#   - long-cache headers for hashed / immutable assets
+#   - basic security headers
+#   - gzip / brotli compression
+# ----------------------------------------------------------------------------
+
+Options +FollowSymLinks -Indexes
+DirectoryIndex index.html
+
+# ----------------------------------------------------------------------------
+# Force HTTPS. Comment out if the host terminates TLS in front.
+# ----------------------------------------------------------------------------
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    RewriteCond %{HTTPS} !=on
+    RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+    # ------------------------------------------------------------------------
+    # Extensionless URLs — serve /download from /download.html. The .html
+    # version still works directly so existing inbound links don't break.
+    # ------------------------------------------------------------------------
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI}.html -f
+    RewriteRule ^(.+?)/?$ /$1.html [L]
+</IfModule>
+
+# ----------------------------------------------------------------------------
+# Compression — reduces transfer size of HTML/CSS/JS by ~70%.
+# ----------------------------------------------------------------------------
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
+    AddOutputFilterByType DEFLATE application/javascript application/json
+    AddOutputFilterByType DEFLATE application/xml application/rss+xml
+    AddOutputFilterByType DEFLATE image/svg+xml
+    AddOutputFilterByType DEFLATE font/ttf font/otf application/font-woff
+</IfModule>
+
+<IfModule mod_brotli.c>
+    AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/css
+    AddOutputFilterByType BROTLI_COMPRESS application/javascript application/json
+    AddOutputFilterByType BROTLI_COMPRESS image/svg+xml
+</IfModule>
+
+# ----------------------------------------------------------------------------
+# Cache headers.
+#
+# HTML pages: short cache so version bumps roll out quickly.
+# Hashed assets under /_astro/: immutable, year-long cache.
+# Images / fonts: 30 days; replace by changing the filename when needed.
+# ----------------------------------------------------------------------------
+<IfModule mod_expires.c>
+    ExpiresActive On
+
+    ExpiresByType text/html                "access plus 5 minutes"
+    ExpiresByType text/css                 "access plus 30 days"
+    ExpiresByType application/javascript   "access plus 30 days"
+
+    ExpiresByType image/png                "access plus 30 days"
+    ExpiresByType image/jpeg               "access plus 30 days"
+    ExpiresByType image/gif                "access plus 30 days"
+    ExpiresByType image/webp               "access plus 30 days"
+    ExpiresByType image/svg+xml            "access plus 30 days"
+    ExpiresByType image/x-icon             "access plus 30 days"
+
+    ExpiresByType font/woff                "access plus 365 days"
+    ExpiresByType font/woff2               "access plus 365 days"
+    ExpiresByType font/ttf                 "access plus 365 days"
+</IfModule>
+
+<IfModule mod_headers.c>
+    # Astro fingerprints assets under /_astro/ — safe to cache forever.
+    <FilesMatch "^.*\.(css|js)$">
+        Header set Cache-Control "public, max-age=2592000"
+    </FilesMatch>
+    <FilesMatch "^.*\.(png|jpg|jpeg|gif|webp|svg|ico|woff|woff2|ttf|otf)$">
+        Header set Cache-Control "public, max-age=2592000"
+    </FilesMatch>
+    <FilesMatch "^.*\.html$">
+        Header set Cache-Control "public, max-age=300, must-revalidate"
+    </FilesMatch>
+
+    # ------------------------------------------------------------------------
+    # Security headers.
+    # ------------------------------------------------------------------------
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    Header set Permissions-Policy "interest-cohort=(), geolocation=(), camera=(), microphone=()"
+    # HSTS — uncomment after confirming HTTPS works from every host you
+    # care about. Turning this on with a misconfigured cert locks
+    # browsers out of the site for max-age seconds.
+    # Header set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+</IfModule>
+
+# ----------------------------------------------------------------------------
+# Charset + MIME tweaks.
+# ----------------------------------------------------------------------------
+AddDefaultCharset UTF-8
+
+<IfModule mod_mime.c>
+    AddType image/webp                  .webp
+    AddType image/svg+xml               .svg
+    AddType font/woff                   .woff
+    AddType font/woff2                  .woff2
+    AddType application/manifest+json   .webmanifest
+</IfModule>
