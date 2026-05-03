@@ -8,14 +8,14 @@ const downloads = [
         recommended: true,
         href: release.downloads.win64,
         filename: `fbide-${release.version}-win64.zip`,
-        note: 'Recommended build. Runs on 64-bit Windows 8.1, 10, and 11.',
+        note: 'Requires Windows 8.1, 10 or 11.',
     },
     {
         label: 'FBIde for Windows (32-bit)',
         recommended: false,
         href: release.downloads.win32,
         filename: `fbide-${release.version}-win32.zip`,
-        note: 'Alternative 32-bit build. Also requires Windows 8.1, 10, or 11 — not for legacy XP / 7 systems.',
+        note: 'Requires Windows 8.1, 10 or 11.',
     },
 ];
 ---
@@ -58,7 +58,7 @@ const downloads = [
                         <div class="meta">
                             <h3>Legacy releases</h3>
                             <p class="text-muted small mb-1">FBIde 0.3.x / 0.4.x</p>
-                            <p class="mb-0">Original SourceForge bundles, kept for reference. Compatible with Windows XP, Vista, and 7.</p>
+                            <p class="mb-0">Original SourceForge bundles, kept for reference. Windows XP and up.</p>
                         </div>
                         <a class="btn btn-outline-secondary" href="/download/legacy.html">Browse</a>
                     </div>
