@@ -33,13 +33,6 @@
     --fbide-link-hover-bg:#2e3338;
 }
 
-/* Reserve a scrollbar gutter even when content fits in the viewport.
-   Without this, navigating between a long page (scrollbar visible)
-   and a short one (no scrollbar) shifts the layout by ~17px and the
-   navbar buttons appear to jerk. */
-html {
-    scrollbar-gutter: stable;
-}
 
 body {
     background: var(--fbide-bg);
@@ -51,6 +44,21 @@ body {
 
 main {
     flex: 1 0 auto;
+}
+
+/* Lock the theme-toggle button width so a slow Bootstrap Icons font
+   load can't temporarily collapse the button and shove the GitHub
+   pill leftwards. Both icons (sun-fill / moon-stars-fill) share the
+   same em-square so swapping at click time doesn't reflow either. */
+.theme-toggle {
+    min-width: 2.25rem;
+    text-align: center;
+}
+
+.theme-toggle .bi {
+    display: inline-block;
+    width: 1em;
+    line-height: 1;
 }
 
 /* --- Hero band --------------------------------------------------------- */

@@ -102,7 +102,13 @@ const navItems = [
                     aria-label="Toggle colour theme"
                     title="Toggle colour theme"
                 >
-                    <i class="bi" id="themeToggleIcon" aria-hidden="true"></i>
+                    <!-- Concrete icon class on the initial render so the button
+                         keeps its final width even before the toggle script
+                         runs / the Bootstrap Icons font finishes loading. The
+                         pre-paint theme script applies data-bs-theme; the
+                         button-icon switch happens on DOMContentLoaded and
+                         the two icons share metrics, so no width jump. -->
+                    <i class="bi bi-moon-stars-fill" id="themeToggleIcon" aria-hidden="true"></i>
                 </button>
             </div>
         </div>
