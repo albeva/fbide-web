@@ -1,23 +1,36 @@
-# Dependencies
+# --- Dependencies ----------------------------------------------------------
 node_modules/
 
-# Build output
+# --- Astro / build output --------------------------------------------------
 dist/
 .astro/
 
-# Logs
+# --- Lock files for unused package managers --------------------------------
+# Keep package-lock.json (npm is the chosen one); do not commit alternates.
+yarn.lock
+pnpm-lock.yaml
+bun.lockb
+
+# --- Logs ------------------------------------------------------------------
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-# Editor / OS
+# --- Editor / OS -----------------------------------------------------------
 .vscode/
 .idea/
+.zed/
+.cache/
 .DS_Store
 Thumbs.db
 
-# Env
+# --- Env -------------------------------------------------------------------
 .env
 .env.local
 .env.*.local
+
+# --- Misc / temp -----------------------------------------------------------
+*.log
+*.tmp
+*.swp

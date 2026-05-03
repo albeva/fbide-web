@@ -97,3 +97,8 @@ required.
 
 CI / deployment workflows are intentionally not configured yet — this
 repository tracks source only.
+
+## License
+
+MIT — see [LICENSE](LICENSE). Same license as
+[FBIde](https://github.com/albeva/fbide).

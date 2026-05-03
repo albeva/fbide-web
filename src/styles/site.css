@@ -143,7 +143,7 @@ article .date {
    image plus a touch of padding so the modal hugs the screenshot
    instead of leaving wide empty bands on the sides. */
 .modal-gallery {
-    max-width: min(95vw, 900px);
+    max-width: min(95vw, 868px);
 }
 
 /* Clip child backgrounds (the strip's grey footer) to the dialog's
