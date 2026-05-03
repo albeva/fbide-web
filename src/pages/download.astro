@@ -5,7 +5,9 @@ import release from '../data/release.json';
 const downloads = [
     {
         label: 'FBIde for Windows (64-bit)',
-        recommended: true,
+        // 'Recommended' badge is reserved for final releases — auto-on
+        // when release.isPrerelease flips to false.
+        recommended: !release.isPrerelease,
         href: release.downloads.win64,
         filename: `fbide-${release.version}-win64.zip`,
         note: 'Requires Windows 8.1, 10 or 11.',
