@@ -1,10 +1,11 @@
 [
-  { "src": "/images/screenshots/about.png",          "caption": "About" },
-  { "src": "/images/screenshots/browser.png",         "caption": "Browser" },
-  { "src": "/images/screenshots/code-formatter.png",  "caption": "Code Formatter" },
-  { "src": "/images/screenshots/dark-theme.png",      "caption": "Dark Theme" },
-  { "src": "/images/screenshots/light-theme.png",     "caption": "Light Theme" },
-  { "src": "/images/screenshots/error-console.png",   "caption": "Error Console" },
-  { "src": "/images/screenshots/panels.png",          "caption": "Panels" },
-  { "src": "/images/screenshots/settings.png",        "caption": "Settings" }
+  { "src": "/images/screenshots/about.png",                  "caption": "About" },
+  { "src": "/images/screenshots/browser.png",                 "caption": "Browser" },
+  { "src": "/images/screenshots/integrated-file-browser.png", "caption": "Integrated File Browser" },
+  { "src": "/images/screenshots/code-formatter.png",          "caption": "Code Formatter" },
+  { "src": "/images/screenshots/dark-theme.png",              "caption": "Dark Theme" },
+  { "src": "/images/screenshots/light-theme.png",             "caption": "Light Theme" },
+  { "src": "/images/screenshots/error-console.png",           "caption": "Error Console" },
+  { "src": "/images/screenshots/panels.png",                  "caption": "Panels" },
+  { "src": "/images/screenshots/settings.png",                "caption": "Settings" }
 ]
