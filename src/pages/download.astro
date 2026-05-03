@@ -28,16 +28,7 @@ const downloads = [
         <div class="container">
             <div class="row g-4">
                 <div class="col-md-8">
-                    <h1 class="h2">Download FBIde <small class="text-muted">{release.version}</small></h1>
-
-                    {release.isPrerelease && (
-                        <div class="alert alert-warning small" role="alert">
-                            This is a pre-release build. Expect rough edges, please report any issues
-                            on the <a class="alert-link" href={`${release.githubRepo}/issues`}>issue tracker</a>.
-                        </div>
-                    )}
-
-                    <h2 class="h4 mt-4">Windows</h2>
+                    <h1 class="h2">Windows</h1>
 
                     {downloads.map((dl) => (
                         <div class="download-card">
@@ -47,9 +38,12 @@ const downloads = [
                                     {dl.recommended && (
                                         <span class="badge text-bg-success ms-2">Recommended</span>
                                     )}
+                                    {release.isPrerelease && (
+                                        <span class="badge text-bg-warning ms-2">Pre-release</span>
+                                    )}
                                 </h3>
                                 <p class="text-muted small mb-1">{dl.filename} &middot; released {release.releaseDate}</p>
-                                <p class="mb-0">{dl.note}</p>
+                                <p class="mb-0">{dl.note}{release.isPrerelease ? ' Pre-release build — expect rough edges.' : ''}</p>
                             </div>
                             <a class="btn btn-primary" href={dl.href}>Download</a>
                         </div>
