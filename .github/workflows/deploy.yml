@@ -1,0 +1,86 @@
+name: Deploy
+
+# Build the Astro site and push the static output to the FTP host on
+# every commit to main. Manual workflow_dispatch lets you trigger an
+# ad-hoc deploy without pushing.
+#
+# Required repository secrets (Settings -> Secrets and variables ->
+# Actions):
+#   FTP_HOST       hostname of the FTP / FTPS server (no protocol prefix)
+#   FTP_USERNAME   login user
+#   FTP_PASSWORD   login password
+#
+# Optional secrets / vars:
+#   FTP_PORT       integer; defaults to 21 (FTPS uses 21 with explicit TLS)
+#   FTP_SERVER_DIR remote directory to sync into; defaults to '/'
+#
+# The action keeps a .ftp-deploy-sync-state.json file on the remote so
+# subsequent runs only upload files whose hash changed.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/**'
+      - 'public/**'
+      - 'astro.config.mjs'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'tsconfig.json'
+      - '.github/workflows/deploy.yml'
+  workflow_dispatch: {}
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
+
+jobs:
+  deploy:
+    name: Build + FTP deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Upload to FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: ${{ secrets.FTP_PORT || 21 }}
+          # Use 'ftps' if the host supports it; falls back to plain
+          # 'ftp' otherwise. Override via repo var if needed.
+          protocol: ${{ vars.FTP_PROTOCOL || 'ftps' }}
+          local-dir: ./dist/
+          server-dir: ${{ secrets.FTP_SERVER_DIR || '/' }}
+          # The action stores .ftp-deploy-sync-state.json on the remote
+          # so subsequent deploys only upload files whose hash changed.
+          state-name: .ftp-deploy-sync-state.json
+          # Never wipe the remote — only upload / delete files the
+          # sync state tracks.
+          dangerous-clean-slate: false
+          # Files under dist/ that aren't part of the deployable
+          # payload. Add patterns here as needed.
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**

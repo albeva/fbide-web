@@ -91,12 +91,27 @@ the measurement ID or remove analytics entirely, edit
 ## Deploy
 
 `npm run build` produces a fully static `dist/` directory. Drop it on
-any static host (GitHub Pages, Netlify, Cloudflare Pages, plain S3 +
-CloudFront, the existing FreeBASIC server). No server-side runtime
-required.
+any static host. No server-side runtime required.
 
-CI / deployment workflows are intentionally not configured yet — this
-repository tracks source only.
+The current production deploy ships to the FreeBASIC FTP host via
+`.github/workflows/deploy.yml` — every push to `main` rebuilds and
+uploads only the changed files (`SamKirkland/FTP-Deploy-Action` keeps
+a `.ftp-deploy-sync-state.json` on the remote for delta detection).
+
+Required repository secrets (Settings → Secrets and variables →
+Actions):
+
+| Name             | Value                                  |
+| ---------------- | -------------------------------------- |
+| `FTP_HOST`       | hostname (no `ftp://` prefix)          |
+| `FTP_USERNAME`   | login user                             |
+| `FTP_PASSWORD`   | login password                         |
+| `FTP_SERVER_DIR` | remote path to sync into (e.g. `/public_html/`) |
+
+Optional repo *variable*: `FTP_PROTOCOL` (`ftps` default, set to
+`ftp` for plain FTP hosts).
+
+To trigger a deploy without pushing: Actions → Deploy → Run workflow.
 
 ## License
 
