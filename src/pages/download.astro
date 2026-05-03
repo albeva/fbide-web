@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import release from '../data/release.json';
+
+const downloads = [
+    {
+        label: 'FBIde for Windows (64-bit)',
+        recommended: true,
+        href: release.downloads.win64,
+        filename: `fbide-${release.version}-win64.zip`,
+        note: 'Recommended for modern Windows 10 / 11 systems.',
+    },
+    {
+        label: 'FBIde for Windows (32-bit)',
+        recommended: false,
+        href: release.downloads.win32,
+        filename: `fbide-${release.version}-win32.zip`,
+        note: 'Alternative download for 32-bit Windows installations.',
+    },
+];
+---
+<BaseLayout
+    title={`Download FBIde ${release.version}`}
+    description={`Download FBIde ${release.version} for Windows (64-bit and 32-bit).`}
+    activeNav="download"
+>
+    <section>
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-8">
+                    <h1 class="h2">Download FBIde <small class="text-muted">{release.version}</small></h1>
+
+                    {release.isPrerelease && (
+                        <div class="alert alert-warning small" role="alert">
+                            This is a pre-release build. Expect rough edges, please report any issues
+                            on the <a class="alert-link" href={`${release.githubRepo}/issues`}>issue tracker</a>.
+                        </div>
+                    )}
+
+                    {downloads.map((dl) => (
+                        <div class="download-card">
+                            <div class="meta">
+                                <h3>
+                                    {dl.label}
+                                    {dl.recommended && (
+                                        <span class="badge text-bg-success ms-2">Recommended</span>
+                                    )}
+                                </h3>
+                                <p class="text-muted small mb-1">{dl.filename}</p>
+                                <p class="mb-0">{dl.note}</p>
+                            </div>
+                            <a class="btn btn-primary" href={dl.href}>
+                                Download
+                            </a>
+                        </div>
+                    ))}
+
+                    <p class="text-muted small">
+                        All downloads are hosted on the
+                        <a href={release.releasePage}>GitHub release page</a> for FBIde
+                        {release.version}, signed and timestamped on the release commit.
+                    </p>
+                </div>
+
+                <aside class="col-md-4">
+                    <h2 class="h4">What's inside?</h2>
+                    <p>
+                        Each download is a self-contained archive containing
+                        <code>fbide.exe</code> and the <code>ide/</code> resource folder
+                        (themes, language files, configuration defaults). Unzip it
+                        anywhere and run <code>fbide.exe</code> — no installer.
+                    </p>
+                    <p>
+                        FreeBASIC itself is a separate download from the
+                        <a href="https://www.freebasic.net/">FreeBASIC project</a>.
+                        Configure FBIde to point at your <code>fbc.exe</code> via
+                        <em>Settings → Compiler</em>.
+                    </p>
+                </aside>
+            </div>
+        </div>
+    </section>
+</BaseLayout>

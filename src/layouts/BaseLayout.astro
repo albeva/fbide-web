@@ -1,0 +1,103 @@
+---
+// Shared HTML shell — navbar + footer + Bootstrap. Pages should slot
+// their content into the default slot.
+//
+// Bootstrap 5 is loaded from a CDN (no npm install of the asset). It
+// drops jQuery entirely; the bundle includes Popper for the few
+// components that need it (modals, carousels, dropdowns).
+import "../styles/site.css";
+
+interface Props {
+    title?: string;
+    description?: string;
+    activeNav?: 'home' | 'download' | 'changelog';
+}
+
+const {
+    title = 'FBIde — IDE for FreeBASIC',
+    description = 'FBIde is an open-source IDE for the FreeBASIC compiler. Lightweight, native, and clutter-free.',
+    activeNav = 'home',
+} = Astro.props;
+
+const navItems = [
+    { id: 'home',      label: 'Overview',  href: '/' },
+    { id: 'download',  label: 'Download',  href: '/download.html' },
+    { id: 'changelog', label: 'Changelog', href: '/changelog.html' },
+];
+---
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="author" content="Albert Varaksin" />
+    <meta name="keywords" content="FBIde, FreeBASIC, IDE, editor, fbc, basic, qbasic" />
+    <title>{title}</title>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+        crossorigin="anonymous"
+    />
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top" aria-label="Primary">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/">FBIde</a>
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#primaryNav"
+                aria-controls="primaryNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="primaryNav">
+                <ul class="navbar-nav me-auto">
+                    {navItems.map((item) => (
+                        <li class="nav-item">
+                            <a
+                                class={`nav-link${activeNav === item.id ? ' active' : ''}`}
+                                aria-current={activeNav === item.id ? 'page' : undefined}
+                                href={item.href}
+                            >{item.label}</a>
+                        </li>
+                    ))}
+                </ul>
+                <a class="btn btn-outline-light btn-sm" href="https://github.com/albeva/fbide" rel="noopener noreferrer" target="_blank">
+                    GitHub
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <slot />
+    </main>
+
+    <footer class="site-footer text-light bg-dark py-3 mt-5">
+        <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+            <p class="mb-0 small">&copy; Albert Varaksin 2004 – {new Date().getFullYear()}</p>
+            <p class="mb-0 small">
+                <a class="link-light" href="https://www.freebasic.net/">FreeBASIC</a>
+                ·
+                <a class="link-light" href="https://github.com/albeva/fbide">GitHub</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap bundle (with Popper) — modal / dropdown / carousel support
+         without jQuery. Loaded after page content so it doesn't block render. -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"
+        defer
+    ></script>
+</body>
+</html>

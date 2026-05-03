@@ -1,0 +1,67 @@
+---
+// Screenshot gallery — thumbnails open a Bootstrap modal showing the
+// full image. Image set is configured in src/data/gallery.json so the
+// caller doesn't need to edit the component to swap assets.
+import gallery from '../data/gallery.json';
+---
+<section id="gallery" class="bg-white border-top">
+    <div class="container">
+        <h2>FBIde in action</h2>
+        <p class="text-muted">Click a thumbnail to view at full size.</p>
+
+        <ul class="gallery-thumbs">
+            {gallery.map((item, index) => (
+                <li>
+                    <button
+                        type="button"
+                        data-bs-toggle="modal"
+                        data-bs-target="#galleryModal"
+                        data-index={index}
+                        data-src={item.src}
+                        data-caption={item.caption}
+                    >
+                        <img src={item.thumb ?? item.src} alt={item.caption} loading="lazy" />
+                    </button>
+                </li>
+            ))}
+        </ul>
+    </div>
+
+    <div class="modal fade" id="galleryModal" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="galleryModalLabel">FBIde</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img id="galleryModalImage" src="" alt="" class="img-fluid" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script is:inline>
+    // Plain DOM, no framework. Updates the modal's image + title from
+    // the button's data-* attributes when shown.
+    document.addEventListener('DOMContentLoaded', () => {
+        const modal = document.getElementById('galleryModal');
+        if (!modal) return;
+        modal.addEventListener('show.bs.modal', (event) => {
+            const btn = event.relatedTarget;
+            if (!btn) return;
+            const src = btn.getAttribute('data-src');
+            const caption = btn.getAttribute('data-caption') ?? '';
+            const img = modal.querySelector('#galleryModalImage');
+            const title = modal.querySelector('#galleryModalLabel');
+            if (img) {
+                img.src = src;
+                img.alt = caption;
+            }
+            if (title) {
+                title.textContent = caption;
+            }
+        });
+    });
+</script>
