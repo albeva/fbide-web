@@ -36,12 +36,24 @@ const downloads = [
                         <div class="download-card">
                             <div class="meta">
                                 <h3>{dl.label} {dl.recommended && (<span class="badge text-bg-success">Recommended</span>)} {release.isPrerelease && (<span class="badge text-bg-warning">Pre-release</span>)}</h3>
-                                <p class="text-muted small mb-1">{dl.filename} &middot; released {release.releaseDate}</p>
+                                <p class="text-muted small mb-1">
+                                    <a href={`/changelog/${release.version}.html`}>v{release.version} release notes</a>
+                                    &middot; released {release.releaseDate}
+                                </p>
                                 <p class="mb-0">{dl.note}{release.isPrerelease ? ' Pre-release build — expect rough edges.' : ''}</p>
                             </div>
                             <a class="btn btn-primary" href={dl.href}>Download</a>
                         </div>
                     ))}
+
+                    <div class="download-card">
+                        <div class="meta">
+                            <h3>Source &amp; other files</h3>
+                            <p class="text-muted small mb-1">Source archives, prior builds, full release notes</p>
+                            <p class="mb-0">Every release artefact is mirrored on the GitHub releases page.</p>
+                        </div>
+                        <a class="btn btn-outline-secondary" href={`${release.githubRepo}/releases`} rel="noopener noreferrer" target="_blank">GitHub</a>
+                    </div>
 
                     <div class="download-card">
                         <div class="meta">
