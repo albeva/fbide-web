@@ -26,7 +26,9 @@ main {
 /* --- Hero band --------------------------------------------------------- */
 
 .hero {
-    background: var(--fbide-hero-bg);
+    /* Repeating texture from the 2012 site, layered over a dark fallback
+       so the band stays readable while the JPEG loads (or fails). */
+    background: var(--fbide-hero-bg) url("/images/header.jpg") repeat;
     color: #fff;
     padding: 3rem 0;
     border-top: 1px solid #000;
