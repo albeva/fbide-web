@@ -82,11 +82,11 @@ and a Contributing page.
 
 ## Analytics
 
-Google Analytics 4 is opt-in. To enable it, copy `.env.example` to
-`.env` and set `PUBLIC_GA_ID` to your GA4 measurement ID
-(`G-XXXXXXXXXX`). The tag is emitted only when the variable is set
-**and** the build is a production build (`npm run build`); local
-`npm run dev` never reports.
+Google Analytics 4 (`G-R2Q0EKY87R`) is wired into `BaseLayout`. The
+gtag tag is emitted only on production builds (`npm run build`) — local
+`npm run dev` skips it, so personal browsing never hits GA. To change
+the measurement ID or remove analytics entirely, edit
+`src/components/Analytics.astro`.
 
 ## Deploy
 
