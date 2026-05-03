@@ -11,8 +11,9 @@ name: Deploy
 #   FTP_PASSWORD   login password
 #
 # Optional secrets / vars:
-#   FTP_PORT       integer; defaults to 21 (FTPS uses 21 with explicit TLS)
-#   FTP_SERVER_DIR remote directory to sync into; defaults to '/'
+#   FTP_PORT        integer secret; defaults to 21 (FTPS uses 21 with explicit TLS)
+#   FTP_SERVER_DIR  repo variable; defaults to '/public_html/'
+#   FTP_PROTOCOL    repo variable; 'ftps' (default) or 'ftp'
 #
 # The action keeps a .ftp-deploy-sync-state.json file on the remote so
 # subsequent runs only upload files whose hash changed.
@@ -71,7 +72,9 @@ jobs:
           # 'ftp' otherwise. Override via repo var if needed.
           protocol: ${{ vars.FTP_PROTOCOL || 'ftps' }}
           local-dir: ./dist/
-          server-dir: ${{ secrets.FTP_SERVER_DIR || '/' }}
+          # Target directory on the FreeBASIC host. Trailing slash is
+          # required by the action.
+          server-dir: ${{ vars.FTP_SERVER_DIR || '/public_html/' }}
           # The action stores .ftp-deploy-sync-state.json on the remote
           # so subsequent deploys only upload files whose hash changed.
           state-name: .ftp-deploy-sync-state.json

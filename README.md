@@ -99,17 +99,22 @@ uploads only the changed files (`SamKirkland/FTP-Deploy-Action` keeps
 a `.ftp-deploy-sync-state.json` on the remote for delta detection).
 
 Required repository secrets (Settings → Secrets and variables →
-Actions):
+Actions → Secrets):
 
-| Name             | Value                                  |
-| ---------------- | -------------------------------------- |
-| `FTP_HOST`       | hostname (no `ftp://` prefix)          |
-| `FTP_USERNAME`   | login user                             |
-| `FTP_PASSWORD`   | login password                         |
-| `FTP_SERVER_DIR` | remote path to sync into (e.g. `/public_html/`) |
+| Name           | Value                          |
+| -------------- | ------------------------------ |
+| `FTP_HOST`     | hostname (no `ftp://` prefix)  |
+| `FTP_USERNAME` | login user                     |
+| `FTP_PASSWORD` | login password                 |
 
-Optional repo *variable*: `FTP_PROTOCOL` (`ftps` default, set to
-`ftp` for plain FTP hosts).
+Optional **repo variables** (Variables tab):
+
+| Name             | Default          | Notes                              |
+| ---------------- | ---------------- | ---------------------------------- |
+| `FTP_SERVER_DIR` | `/public_html/`  | Remote path to sync into.          |
+| `FTP_PROTOCOL`   | `ftps`           | Set to `ftp` for plain FTP hosts.  |
+
+Optional secret `FTP_PORT` (default `21`).
 
 To trigger a deploy without pushing: Actions → Deploy → Run workflow.
 
