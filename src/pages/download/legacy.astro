@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import legacy from '../../data/legacy.json';
+---
+<BaseLayout
+    title="FBIde legacy downloads"
+    description="Older FBIde releases (0.3.x and 0.4.x) on SourceForge — kept for reference. Bundles outdated FreeBASIC versions."
+    activeNav="download"
+>
+    <section>
+        <div class="container">
+            <p class="mb-2">
+                <a href="/download.html">&laquo; Back to current download</a>
+            </p>
+            <h1 class="h2">Legacy downloads</h1>
+            <p>
+                These are the original FBIde 0.3.x and 0.4.x releases hosted on
+                <a href={legacy.sourceforge} rel="noopener noreferrer" target="_blank">SourceForge</a>.
+                They are kept here for reference — most users should download the current
+                <a href="/download.html">0.5.x build</a> from GitHub instead.
+            </p>
+
+            <div class="alert alert-warning small" role="alert">
+                <strong>Heads up.</strong> Legacy bundles contain outdated FreeBASIC versions
+                (down to FB 0.23) and have not received fixes in over a decade. Use them only
+                if you specifically need to maintain a project pinned to that toolchain.
+            </div>
+
+            <h2 class="h4 mt-4">Older releases</h2>
+            <ul class="legacy-list">
+                {legacy.releases.map((rel) => (
+                    <li>
+                        <a href={rel.url} rel="noopener noreferrer" target="_blank">FBIde {rel.version}</a>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    </section>
+</BaseLayout>

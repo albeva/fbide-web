@@ -1,0 +1,16 @@
+{
+  "sourceforge": "https://sourceforge.net/projects/fbide/files/",
+  "releases": [
+    { "version": "0.4.6 r4", "url": "https://sourceforge.net/projects/fbide/files/fbide%200.4/fbide%200.4.6%20r4/" },
+    { "version": "0.4.6 r3", "url": "https://sourceforge.net/projects/fbide/files/fbide%200.4/fbide%200.4.6%20r3/" },
+    { "version": "0.4.6 r2", "url": "https://sourceforge.net/projects/fbide/files/fbide%200.4/fbide%200.4.6%20r2/" },
+    { "version": "0.4.6",    "url": "https://sourceforge.net/projects/fbide/files/fbide%200.4/fbide%200.4.6/" },
+    { "version": "0.4.5",    "url": "https://sourceforge.net/projects/fbide/files/fbide%200.4/fbide%200.4.5/" },
+    { "version": "0.4.4",    "url": "https://sourceforge.net/projects/fbide/files/fbide%200.4/fbide%200.4.4/" },
+    { "version": "0.4.3",    "url": "https://sourceforge.net/projects/fbide/files/fbide%200.4/fbide%200.4.3/" },
+    { "version": "0.4.2",    "url": "https://sourceforge.net/projects/fbide/files/fbide%200.4/fbide%200.4.2/" },
+    { "version": "0.4.1",    "url": "https://sourceforge.net/projects/fbide/files/fbide%200.4/fbide%200.4.1/" },
+    { "version": "0.4",      "url": "https://sourceforge.net/projects/fbide/files/fbide%200.4/fbide%200.4/" },
+    { "version": "0.3.3",    "url": "https://sourceforge.net/projects/fbide/files/fbide%200.3.3/" }
+  ]
+}
