@@ -29,7 +29,6 @@ const downloads = [
             <div class="row g-4">
                 <div class="col-md-8">
                     <h1 class="h2">Download FBIde <small class="text-muted">{release.version}</small></h1>
-                    <p class="text-muted small mb-3">Released {release.releaseDate}</p>
 
                     {release.isPrerelease && (
                         <div class="alert alert-warning small" role="alert">
@@ -37,6 +36,8 @@ const downloads = [
                             on the <a class="alert-link" href={`${release.githubRepo}/issues`}>issue tracker</a>.
                         </div>
                     )}
+
+                    <h2 class="h4 mt-4">Windows</h2>
 
                     {downloads.map((dl) => (
                         <div class="download-card">
