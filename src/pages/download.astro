@@ -17,7 +17,7 @@ const downloads = [
         recommended: false,
         href: release.downloads.win32,
         filename: `fbide-${release.version}-win32.zip`,
-        note: 'Requires Windows 8.1, 10 or 11.',
+        note: 'Requires Windows 7, 8.1, 10 or 11. Windows 7 may need the <a href="https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist" rel="noopener noreferrer" target="_blank">Visual C++ Redistributable</a> installed.',
     },
 ];
 ---
@@ -41,7 +41,7 @@ const downloads = [
                                     &middot; released {release.releaseDate}
                                     &middot; <a href={`/changelog/${release.version}.html`}>changelog</a>
                                 </p>
-                                <p class="mb-0">{dl.note}</p>
+                                <p class="mb-0" set:html={dl.note}></p>
                             </div>
                             <a class="btn btn-primary" href={dl.href}>Download</a>
                         </div>
