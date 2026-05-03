@@ -63,6 +63,20 @@ section h2 {
     margin-bottom: 1rem;
 }
 
+/* Bullets sit flush with the section heading instead of indented under
+   it. list-style-position:inside keeps the marker at the left edge so
+   wrapped lines start under the bullet column. */
+.features-list {
+    list-style-position: inside;
+    padding-left: 0;
+    margin-left: 0;
+}
+
+.features-list li {
+    text-indent: -1.1rem;
+    padding-left: 1.1rem;
+}
+
 article + article,
 .feature-block + .feature-block {
     margin-top: 1.25rem;
