@@ -1,0 +1,35 @@
+---
+// Sidebar nav listing every changelog version, newest first. Active
+// version is highlighted. Used by both the top-level changelog page
+// (which mirrors the latest entry) and the per-version subpages.
+import { getCollection } from 'astro:content';
+
+interface Props {
+    activeVersion?: string;
+}
+
+const { activeVersion } = Astro.props;
+
+const entries = (await getCollection('changelog')).sort((a, b) =>
+    b.data.date.localeCompare(a.data.date)
+);
+---
+<aside class="changelog-sidebar">
+    <h2 class="h6 text-uppercase text-muted">Versions</h2>
+    <nav aria-label="Changelog versions">
+        <ul class="list-unstyled mb-0">
+            {entries.map((entry) => (
+                <li>
+                    <a
+                        class={`changelog-sidebar-link${entry.data.version === activeVersion ? ' active' : ''}`}
+                        href={`/changelog/${entry.id}.html`}
+                        aria-current={entry.data.version === activeVersion ? 'page' : undefined}
+                    >
+                        <span class="version">{entry.data.version}</span>
+                        <span class="date">{entry.data.date}</span>
+                    </a>
+                </li>
+            ))}
+        </ul>
+    </nav>
+</aside>

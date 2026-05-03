@@ -1,0 +1,43 @@
+---
+// Dynamic route — one HTML page per changelog version, generated at
+// build time from the collection. URL: /changelog/<id>.html where <id>
+// is the markdown filename without extension (e.g. 0.5.0.beta-1).
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ChangelogSidebar from '../../components/ChangelogSidebar.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+    const entries = await getCollection('changelog');
+    return entries.map((entry) => ({
+        params: { version: entry.id },
+        props: { entry },
+    }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+<BaseLayout
+    title={`FBIde ${entry.data.version} changelog`}
+    description={`Release notes for FBIde ${entry.data.version}.`}
+    activeNav="changelog"
+>
+    <section>
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-3">
+                    <ChangelogSidebar activeVersion={entry.data.version} />
+                </div>
+                <div class="col-lg-9">
+                    <article class="changelog-content">
+                        <header class="changelog-header">
+                            <h1>FBIde {entry.data.version}</h1>
+                            <p class="date text-muted mb-4">{entry.data.date}{entry.data.title ? ` — ${entry.data.title}` : ''}</p>
+                        </header>
+                        <Content />
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+</BaseLayout>

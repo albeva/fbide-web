@@ -1,34 +1,37 @@
 ---
+// Top-level /changelog.html mirrors the latest version's content so a
+// bare /changelog link always lands on something useful. Each older
+// version has its own subpage at /changelog/<id>.html.
 import BaseLayout from '../layouts/BaseLayout.astro';
-import release from '../data/release.json';
+import ChangelogSidebar from '../components/ChangelogSidebar.astro';
+import { getCollection, render } from 'astro:content';
 
-// Pull rendered HTML from src/content/changes.md — the file is the
-// canonical source of release notes; this page is just the chrome
-// around it. Drop new versions on top of changes.md per release.
-import { Content as Changes } from '../content/changes.md';
+const entries = (await getCollection('changelog')).sort((a, b) =>
+    b.data.date.localeCompare(a.data.date)
+);
+const latest = entries[0];
+const { Content } = await render(latest);
 ---
 <BaseLayout
-    title="FBIde changelog"
-    description="Release notes for FBIde."
+    title={`FBIde ${latest.data.version} changelog`}
+    description={`Release notes for FBIde ${latest.data.version}.`}
     activeNav="changelog"
 >
     <section>
         <div class="container">
             <div class="row g-4">
+                <div class="col-lg-3">
+                    <ChangelogSidebar activeVersion={latest.data.version} />
+                </div>
                 <div class="col-lg-9">
                     <article class="changelog-content">
-                        <Changes />
+                        <header class="changelog-header">
+                            <h1>FBIde {latest.data.version}</h1>
+                            <p class="date text-muted mb-4">{latest.data.date}{latest.data.title ? ` — ${latest.data.title}` : ''}</p>
+                        </header>
+                        <Content />
                     </article>
                 </div>
-                <aside class="col-lg-3">
-                    <p class="text-muted small">
-                        The full release log lives on the
-                        <a href={`${release.githubRepo}/releases`}>GitHub releases page</a>.
-                    </p>
-                    <p class="text-muted small">
-                        Source for this page: <code>src/content/changes.md</code>.
-                    </p>
-                </aside>
             </div>
         </div>
     </section>
