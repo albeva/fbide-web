@@ -49,25 +49,18 @@ const downloads = [
                                 <p class="text-muted small mb-1">{dl.filename}</p>
                                 <p class="mb-0">{dl.note}</p>
                             </div>
-                            <a class="btn btn-primary" href={dl.href}>
-                                Download
-                            </a>
+                            <a class="btn btn-primary" href={dl.href}>Download</a>
                         </div>
                     ))}
 
-                    <p class="text-muted small">
-                        All downloads are hosted on the
-                        <a href={release.releasePage}>GitHub release page</a> for FBIde
-                        {release.version}, signed and timestamped on the release commit.
-                    </p>
-
-                    <hr class="my-4" />
-
-                    <p class="small">
-                        Looking for an older build?
-                        <a href="/download/legacy.html">Browse legacy downloads &raquo;</a>
-                        — original 0.3.x / 0.4.x releases on SourceForge.
-                    </p>
+                    <div class="download-card">
+                        <div class="meta">
+                            <h3>Legacy releases</h3>
+                            <p class="text-muted small mb-1">FBIde 0.3.x / 0.4.x</p>
+                            <p class="mb-0">Original SourceForge bundles, kept for reference.</p>
+                        </div>
+                        <a class="btn btn-outline-secondary" href="/download/legacy.html">Browse</a>
+                    </div>
                 </div>
 
                 <aside class="col-md-4">
