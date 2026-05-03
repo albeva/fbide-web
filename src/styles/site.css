@@ -136,13 +136,22 @@ article .date {
 
 /* --- Gallery modal (main image + bottom strip) ------------------------ */
 
+/* Source images are 838x630. Cap dialog width to comfortably fit one
+   image plus a touch of padding so the modal hugs the screenshot
+   instead of leaving wide empty bands on the sides. */
+.modal-gallery {
+    max-width: min(95vw, 900px);
+}
+
 .gallery-main {
     background: #1a1a1a;
     text-align: center;
-    padding: 0.75rem;
+    padding: 0;
 }
 
 .gallery-main img {
+    display: block;
+    margin: 0 auto;
     max-width: 100%;
     max-height: 70vh;
     height: auto;
@@ -151,6 +160,7 @@ article .date {
 
 .gallery-strip {
     display: flex;
+    justify-content: center;
     gap: 0.4rem;
     margin: 0;
     padding: 0.6rem 0.75rem;

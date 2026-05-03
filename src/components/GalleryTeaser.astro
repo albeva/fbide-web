@@ -1,7 +1,8 @@
 ---
-// Compact thumbnail grid shown on the home page. Each tile is a button
-// that opens the gallery modal (rendered separately by Gallery.astro)
-// at that thumbnail's index — wired via data-bs-toggle / data-index.
+// Compact thumbnail grid for the home page. Each tile opens the
+// gallery modal (rendered separately by Gallery.astro) at that
+// thumbnail's index. Pass `limit` to truncate the grid and append a
+// "More images" CTA that opens the modal at the first hidden image.
 import galleryData from '../data/gallery.json';
 
 interface GalleryItem {
@@ -10,10 +11,18 @@ interface GalleryItem {
     thumb?: string;
 }
 
+interface Props {
+    limit?: number;
+}
+
 const gallery = galleryData as GalleryItem[];
+const { limit } = Astro.props;
+const visible = limit ? gallery.slice(0, limit) : gallery;
+const hasMore = limit !== undefined && gallery.length > limit;
+const moreIndex = limit ?? 0;
 ---
 <ul class="gallery-teaser list-unstyled">
-    {gallery.map((item, index) => (
+    {visible.map((item, index) => (
         <li>
             <button
                 type="button"
@@ -28,3 +37,16 @@ const gallery = galleryData as GalleryItem[];
         </li>
     ))}
 </ul>
+{hasMore && (
+    <p class="mt-3 mb-0">
+        <button
+            type="button"
+            class="btn btn-sm btn-outline-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#galleryModal"
+            data-index={moreIndex}
+        >
+            More images &raquo;
+        </button>
+    </p>
+)}
