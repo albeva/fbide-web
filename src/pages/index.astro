@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
+import GalleryTeaser from '../components/GalleryTeaser.astro';
 import Gallery from '../components/Gallery.astro';
 import release from '../data/release.json';
 ---
@@ -10,34 +11,38 @@ import release from '../data/release.json';
     <section>
         <div class="container">
             <div class="row g-4">
-                <div class="col-md-7">
+                <div class="col-md-4">
                     <h2>About</h2>
                     <p>
                         FBIde is an open-source <abbr title="Integrated Development Environment">IDE</abbr>
                         for the <a href="https://www.freebasic.net/">FreeBASIC</a> compiler. It lets you
                         edit, compile, and run your FreeBASIC programs without ever touching the command
-                        line. The current rewrite is a clean, modern C++23 codebase built on wxWidgets and
-                        the Scintilla editor component.
+                        line.
                     </p>
                     <p>
-                        FBIde is licensed under the
-                        <a href="https://github.com/albeva/fbide/blob/main/LICENSE">MIT licence</a>.
-                        Source code, issue tracker and releases all live on
+                        The current rewrite is a clean modern C++23 codebase built on wxWidgets and
+                        the Scintilla editor component. Source, issues, and releases live on
                         <a href={release.githubRepo}>GitHub</a>.
                     </p>
                 </div>
 
-                <div class="col-md-5">
+                <div class="col-md-4">
                     <h2>Features</h2>
                     <ul>
-                        <li>FreeBASIC source editor with syntax highlighting, auto-indent, and code folding.</li>
+                        <li>FreeBASIC source editor with syntax highlighting, auto-indent, code folding.</li>
                         <li>One-key compile, run, and quick-run with parsed compiler errors.</li>
                         <li>Themable editor — Borland, Modern, Obsidian, Ocean, Twilight, and more.</li>
                         <li>Sub / Function browser and code formatter with case conversion.</li>
-                        <li>Find and replace across documents, recent-files history, multi-tab interface.</li>
+                        <li>Find and replace, recent files, multi-tab interface.</li>
                         <li>Localised UI in English plus a dozen translations.</li>
                         <li>Context-sensitive help — CHM on Windows with a wiki fallback.</li>
                     </ul>
+                </div>
+
+                <div class="col-md-4">
+                    <h2>Gallery</h2>
+                    <p class="text-muted small mb-2">Click a thumbnail to view full size.</p>
+                    <GalleryTeaser />
                 </div>
             </div>
         </div>

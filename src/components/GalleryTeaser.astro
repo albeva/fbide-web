@@ -1,0 +1,30 @@
+---
+// Compact thumbnail grid shown on the home page. Each tile is a button
+// that opens the gallery modal (rendered separately by Gallery.astro)
+// at that thumbnail's index — wired via data-bs-toggle / data-index.
+import galleryData from '../data/gallery.json';
+
+interface GalleryItem {
+    src: string;
+    caption: string;
+    thumb?: string;
+}
+
+const gallery = galleryData as GalleryItem[];
+---
+<ul class="gallery-teaser list-unstyled">
+    {gallery.map((item, index) => (
+        <li>
+            <button
+                type="button"
+                class="gallery-teaser-thumb"
+                data-bs-toggle="modal"
+                data-bs-target="#galleryModal"
+                data-index={index}
+                aria-label={`Open: ${item.caption}`}
+            >
+                <img src={item.thumb ?? item.src} alt={item.caption} loading="lazy" />
+            </button>
+        </li>
+    ))}
+</ul>
