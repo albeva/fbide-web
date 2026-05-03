@@ -6,6 +6,7 @@
 // drops jQuery entirely; the bundle includes Popper for the few
 // components that need it (modals, carousels, dropdowns).
 import "../styles/site.css";
+import Analytics from "../components/Analytics.astro";
 
 interface Props {
     title?: string;
@@ -41,6 +42,7 @@ const navItems = [
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
         crossorigin="anonymous"
     />
+    <Analytics />
 </head>
 <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top" aria-label="Primary">

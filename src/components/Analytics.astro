@@ -1,0 +1,26 @@
+---
+// Google Analytics 4 (gtag.js) — opt-in via the PUBLIC_GA_ID env var,
+// AND only in production builds. Local `npm run dev` and unconfigured
+// production builds emit nothing, so personal browsing never hits GA.
+//
+// Set the ID in a project-root .env file:
+//
+//     PUBLIC_GA_ID=G-XXXXXXXXXX
+//
+// `PUBLIC_*` is the Astro convention for variables that get baked into
+// client-side bundles. The ID is public anyway (visible in the request
+// URL of the gtag script), so this is fine.
+const gaId = import.meta.env.PUBLIC_GA_ID;
+const enabled = import.meta.env.PROD && !!gaId;
+---
+{enabled && (
+    <>
+        <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
+        <script is:inline define:vars={{ gaId }}>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+            gtag('config', gaId);
+        </script>
+    </>
+)}
