@@ -187,7 +187,7 @@ article .date {
 .gallery-main {
     background: var(--fbide-bg);
     text-align: center;
-    padding: 0;
+    padding: 0.6rem 0;
 }
 
 .gallery-main img {
