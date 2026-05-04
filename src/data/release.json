@@ -1,12 +1,12 @@
 {
-  "version": "0.5.0.beta-1",
-  "tag": "v0.5.0.beta-1",
+  "version": "0.5.0.beta-2",
+  "tag": "v0.5.0.beta-2",
   "isPrerelease": true,
   "downloads": {
-    "win64": "https://github.com/albeva/fbide/releases/download/v0.5.0.beta-1/fbide-0.5.0.beta-1-win64.zip",
-    "win32": "https://github.com/albeva/fbide/releases/download/v0.5.0.beta-1/fbide-0.5.0.beta-1-win32.zip"
+    "win64": "https://github.com/albeva/fbide/releases/download/v0.5.0.beta-2/fbide-0.5.0.beta-2-win64.zip",
+    "win32": "https://github.com/albeva/fbide/releases/download/v0.5.0.beta-2/fbide-0.5.0.beta-2-win32.zip"
   },
-  "releasePage": "https://github.com/albeva/fbide/releases/tag/v0.5.0.beta-1",
-  "releaseDate": "2026-05-03",
+  "releasePage": "https://github.com/albeva/fbide/releases/tag/v0.5.0.beta-2",
+  "releaseDate": "2026-05-04",
   "githubRepo": "https://github.com/albeva/fbide"
 }
