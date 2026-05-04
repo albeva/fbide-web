@@ -4,8 +4,36 @@ import Hero from '../components/Hero.astro';
 import GalleryTeaser from '../components/GalleryTeaser.astro';
 import Gallery from '../components/Gallery.astro';
 import release from '../data/release.json';
+
+// Schema.org SoftwareApplication payload for the home page — gives
+// search engines a structured summary of the product (name, license,
+// platform, current version, download URL) for richer results.
+const siteUrl = Astro.site!.toString().replace(/\/$/, '');
+const softwareSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'FBIde',
+    description: 'FBIde is an open-source IDE for the FreeBASIC compiler. Lightweight, native, and clutter-free.',
+    applicationCategory: 'DeveloperApplication',
+    operatingSystem: 'Windows',
+    softwareVersion: release.version,
+    url: siteUrl,
+    downloadUrl: `${siteUrl}/download.html`,
+    image: `${siteUrl}/images/screenshots/dark-theme.png`,
+    license: 'https://opensource.org/licenses/MIT',
+    author: {
+        '@type': 'Person',
+        name: 'Albert Varaksin',
+    },
+    offers: {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'USD',
+    },
+};
 ---
 <BaseLayout activeNav="home">
+    <script type="application/ld+json" set:html={JSON.stringify(softwareSchema)}></script>
     <Hero />
 
     <section>
@@ -15,14 +43,14 @@ import release from '../data/release.json';
                     <h2>About</h2>
                     <p>
                         FBIde is a simple editor built specifically for
-                        <a href="https://www.freebasic.net/">FreeBASIC</a>. The goal is a
+                        <a href="https://www.freebasic.net/" rel="noopener noreferrer" target="_blank">FreeBASIC</a>. The goal is a
                         seamless, clutter-free development environment — your code on screen,
                         the tools you need a keystroke away, and nothing in your way.
                     </p>
                     <p>
                         Free, open source, and self-contained: drop the zip into any folder
                         and run. Source and issues live on
-                        <a href={release.githubRepo}>GitHub</a>.
+                        <a href={release.githubRepo} rel="noopener noreferrer" target="_blank">GitHub</a>.
                     </p>
                 </div>
 
