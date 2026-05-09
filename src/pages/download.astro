@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import release from '../data/release.json';
 
-const downloads = [
+const windowsDownloads = [
     {
         label: 'FBIde for Windows (64-bit)',
         // 'Recommended' badge is reserved for final releases — auto-on
@@ -20,10 +20,20 @@ const downloads = [
         note: 'Requires Windows 7, 8.1, 10 or 11. Windows 7 may need the <a href="https://www.microsoft.com/en-us/download/details.aspx?id=48145" rel="noopener noreferrer" target="_blank">Visual C++ 2015 Redistributable</a> installed.',
     },
 ];
+
+const linuxDownloads = [
+    {
+        label: 'FBIde for Linux (64-bit AppImage)',
+        recommended: false,
+        href: release.downloads.linux64,
+        filename: `fbide-${release.version}-x86_64.AppImage`,
+        note: 'Portable AppImage for x86_64. <code>chmod +x</code> the file then run it. Requires a glibc-based distro with FUSE available.',
+    },
+];
 ---
 <BaseLayout
     title={`Download FBIde ${release.version}`}
-    description={`Download FBIde ${release.version} for Windows (64-bit and 32-bit).`}
+    description={`Download FBIde ${release.version} for Windows (64-bit and 32-bit) and Linux (AppImage).`}
     activeNav="download"
 >
     <section>
@@ -32,7 +42,7 @@ const downloads = [
                 <div class="col-md-8">
                     <h1 class="h2">Windows</h1>
 
-                    {downloads.map((dl) => (
+                    {windowsDownloads.map((dl) => (
                         <div class="download-card">
                             <div class="meta">
                                 <h3>{dl.label} {dl.recommended && (<span class="badge text-bg-success">Recommended</span>)} {release.isPrerelease && (<span class="badge text-bg-warning">Pre-release</span>)}</h3>
@@ -46,6 +56,25 @@ const downloads = [
                             <a class="btn btn-primary" href={dl.href}>Download</a>
                         </div>
                     ))}
+
+                    <h2 class="h2 mt-4">Linux</h2>
+
+                    {linuxDownloads.map((dl) => (
+                        <div class="download-card">
+                            <div class="meta">
+                                <h3>{dl.label} {dl.recommended && (<span class="badge text-bg-success">Recommended</span>)} {release.isPrerelease && (<span class="badge text-bg-warning">Pre-release</span>)}</h3>
+                                <p class="text-muted small mb-1">
+                                    v{release.version}
+                                    &middot; released {release.releaseDate}
+                                    &middot; <a href={`/changelog/${release.version}.html`}>changelog</a>
+                                </p>
+                                <p class="mb-0" set:html={dl.note}></p>
+                            </div>
+                            <a class="btn btn-primary" href={dl.href}>Download</a>
+                        </div>
+                    ))}
+
+                    <h2 class="h4 mt-4">Other</h2>
 
                     <div class="download-card">
                         <div class="meta">
