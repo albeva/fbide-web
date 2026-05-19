@@ -52,11 +52,6 @@ const navItems = [
     <link rel="canonical" href={canonicalUrl} />
     <link rel="icon" type="image/png" href="/favicon.png" />
 
-    <!-- Bootstrap's JS bundle still loads from jsDelivr (deferred, at
-         end of body). Open the connection early so it isn't paying the
-         DNS + TLS handshake when the parser reaches it. -->
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-
     <!-- Open Graph (Facebook, LinkedIn, Discord, …) -->
     <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content="FBIde" />
@@ -170,16 +165,16 @@ const navItems = [
         </div>
     </footer>
 
-    <!-- Bootstrap bundle (with Popper) — modal / dropdown / carousel support
-         without jQuery. Loaded after page content so it doesn't block render.
-         is:inline keeps Astro from trying to process this as a local module. -->
-    <script
-        is:inline
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"
-        defer
-    ></script>
+    <!-- Only the two Bootstrap behaviours this site uses: navbar
+         collapse and the gallery modal. Importing the component
+         modules also registers their data-API click handlers, so the
+         existing data-bs-toggle markup keeps working without shipping
+         the full bundle (or Popper, which only dropdowns/tooltips
+         need). Astro bundles, tree-shakes and defers this. -->
+    <script>
+        import 'bootstrap/js/dist/collapse';
+        import 'bootstrap/js/dist/modal';
+    </script>
 
     <!-- Theme toggle — flip data-bs-theme on <html> and persist the
          choice. Icon visibility is driven by CSS off the same
