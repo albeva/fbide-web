@@ -50,6 +50,11 @@ const navItems = [
     <link rel="canonical" href={canonicalUrl} />
     <link rel="icon" type="image/png" href="/favicon.png" />
 
+    <!-- Bootstrap CSS + icon font ship from jsDelivr and block render.
+         Open the TCP + TLS connection early so the stylesheet requests
+         below don't pay the handshake cost on the critical path. -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+
     <!-- Open Graph (Facebook, LinkedIn, Discord, …) -->
     <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content="FBIde" />

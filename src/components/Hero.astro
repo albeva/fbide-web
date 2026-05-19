@@ -19,7 +19,17 @@ import release from '../data/release.json';
                 </p>
             </div>
             <div class="col-md-4 text-center">
-                <img class="hero-illustration" src="/images/horse.png" alt="" loading="lazy" />
+                <!-- LCP element on the home page: eager-load + high fetch
+                     priority so the browser pulls it off the critical
+                     path early. Intrinsic dimensions prevent layout shift. -->
+                <img
+                    class="hero-illustration"
+                    src="/images/horse.png"
+                    alt=""
+                    width="300"
+                    height="240"
+                    fetchpriority="high"
+                />
             </div>
         </div>
     </div>
