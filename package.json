@@ -18,6 +18,8 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
+    "bootstrap": "^5.3.3",
+    "sass": "^1.99.0",
     "typescript": "^5.9.3"
   }
 }

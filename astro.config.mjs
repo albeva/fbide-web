@@ -12,6 +12,21 @@ export default defineConfig({
     build: {
         format: 'file'
     },
+    vite: {
+        css: {
+            preprocessorOptions: {
+                scss: {
+                    // Bootstrap 5.3 is still written against the legacy Sass
+                    // module system; silence its deprecation noise so real
+                    // warnings stay visible in the build log.
+                    silenceDeprecations: [
+                        'import', 'global-builtin', 'color-functions',
+                        'if-function',
+                    ],
+                },
+            },
+        },
+    },
     integrations: [
         // build.format: 'file' produces /foo.html on disk — append the
         // extension to non-root sitemap entries so search engines hit the
