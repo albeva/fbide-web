@@ -46,19 +46,18 @@ main {
     flex: 1 0 auto;
 }
 
-/* Lock the theme-toggle button width so a slow Bootstrap Icons font
-   load can't temporarily collapse the button and shove the GitHub
-   pill leftwards. Both icons (sun-fill / moon-stars-fill) share the
-   same em-square so swapping at click time doesn't reflow either. */
+/* Lock the theme-toggle button width so swapping icons can't reflow
+   the navbar. Both icons (sun-fill / moon-stars-fill) share the same
+   em-square so the click-time swap doesn't shift the GitHub pill. */
 .theme-toggle {
     min-width: 2.25rem;
     text-align: center;
 }
 
-.theme-toggle .bi {
-    display: inline-block;
+.theme-toggle .theme-icon {
     width: 1em;
-    line-height: 1;
+    height: 1em;
+    vertical-align: -0.125em;
 }
 
 /* Show the icon for the *opposite* of the active theme — that's the
@@ -67,7 +66,7 @@ main {
    moon -> sun flicker for dark-mode users. */
 .theme-icon-dark { display: none; }
 [data-bs-theme="dark"] .theme-icon-light { display: none; }
-[data-bs-theme="dark"] .theme-icon-dark  { display: inline-block; }
+[data-bs-theme="dark"] .theme-icon-dark  { display: inline; }
 
 /* --- Hero band --------------------------------------------------------- */
 
