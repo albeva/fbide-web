@@ -26,12 +26,17 @@ DirectoryIndex index.html
     # ------------------------------------------------------------------------
     # Extensionless URLs — 301-redirect /download to /download.html so the
     # .html page is the single canonical URL. Old inbound links to the
-    # extensionless path keep working via the redirect. A trailing slash is
-    # also handled (/changelog/ -> /changelog.html).
+    # extensionless path keep working via the redirect.
+    #
+    # The .html test uses the RewriteRule's $1 capture (not REQUEST_URI) so a
+    # trailing slash is stripped before .html is appended — this handles both
+    # /download and /download/. The directory check is intentionally omitted:
+    # Astro emits both download.html and a download/ directory (for
+    # download/legacy.html), so a !-d guard would skip the rewrite and let
+    # Apache 403 on the indexless directory instead.
     # ------------------------------------------------------------------------
     RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI}.html -f
+    RewriteCond %{DOCUMENT_ROOT}/$1.html -f
     RewriteRule ^(.+?)/?$ /$1.html [R=301,L]
 </IfModule>
 
