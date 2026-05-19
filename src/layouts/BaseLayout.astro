@@ -2,9 +2,11 @@
 // Shared HTML shell — navbar + footer + Bootstrap. Pages should slot
 // their content into the default slot.
 //
-// Bootstrap 5 is loaded from a CDN (no npm install of the asset). It
-// drops jQuery entirely; the bundle includes Popper for the few
-// components that need it (modals, carousels, dropdowns).
+// Bootstrap is CSS-only here: a trimmed Sass build (styles/bootstrap.scss)
+// supplies the styling, and the page ships no Bootstrap JS. The two
+// interactive pieces — the navbar collapse below and the gallery
+// dialog (Gallery.astro) — are a few lines of vanilla JS on top of the
+// native <dialog> element.
 // Bootstrap first so the site stylesheet can override it.
 import "../styles/bootstrap.scss";
 import "../styles/site.css";
@@ -90,10 +92,9 @@ const navItems = [
         <div class="container">
             <a class="navbar-brand fw-bold" href="/">FBIde</a>
             <button
+                id="navToggler"
                 class="navbar-toggler"
                 type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#primaryNav"
                 aria-controls="primaryNav"
                 aria-expanded="false"
                 aria-label="Toggle navigation"
@@ -165,15 +166,19 @@ const navItems = [
         </div>
     </footer>
 
-    <!-- Only the two Bootstrap behaviours this site uses: navbar
-         collapse and the gallery modal. Importing the component
-         modules also registers their data-API click handlers, so the
-         existing data-bs-toggle markup keeps working without shipping
-         the full bundle (or Popper, which only dropdowns/tooltips
-         need). Astro bundles, tree-shakes and defers this. -->
-    <script>
-        import 'bootstrap/js/dist/collapse';
-        import 'bootstrap/js/dist/modal';
+    <!-- Navbar collapse — toggle Bootstrap's .show class on the menu.
+         Replaces Bootstrap's collapse plugin; the gallery dialog
+         handles its own open/close, so the site ships no Bootstrap JS. -->
+    <script is:inline>
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggler = document.getElementById('navToggler');
+            const nav = document.getElementById('primaryNav');
+            if (!toggler || !nav) return;
+            toggler.addEventListener('click', function () {
+                const shown = nav.classList.toggle('show');
+                toggler.setAttribute('aria-expanded', shown ? 'true' : 'false');
+            });
+        });
     </script>
 
     <!-- Theme toggle — flip data-bs-theme on <html> and persist the

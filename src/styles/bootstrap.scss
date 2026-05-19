@@ -1,7 +1,8 @@
 // Minimal Bootstrap 5.3 build — only the parts this site actually uses.
 // Replaces the full CDN stylesheet, which PageSpeed flagged as ~95%
-// unused. Dropped components: cards, tables, forms/input-groups,
-// dropdowns, accordion, carousel, toasts, tooltips/popovers, offcanvas,
+// unused. Dropped components: modal/close (the gallery now uses a
+// native <dialog>), cards, tables, forms/input-groups, dropdowns,
+// accordion, carousel, toasts, tooltips/popovers, offcanvas,
 // pagination, progress, spinners, list-group, breadcrumb.
 //
 // If a page starts using a new component, add its partial below.
@@ -20,13 +21,11 @@
 @import "bootstrap/scss/containers";    // .container
 @import "bootstrap/scss/grid";          // .row / .col-*
 @import "bootstrap/scss/buttons";       // .btn and variants
-@import "bootstrap/scss/transitions";   // .fade / .collapse / .collapsing
+@import "bootstrap/scss/transitions";   // .collapse / .collapsing (navbar)
 @import "bootstrap/scss/nav";           // navbar depends on nav
 @import "bootstrap/scss/navbar";
 @import "bootstrap/scss/alert";         // download/legacy page warning
 @import "bootstrap/scss/badge";         // download page release badges
-@import "bootstrap/scss/close";         // .btn-close (modal + alert)
-@import "bootstrap/scss/modal";         // gallery modal
 @import "bootstrap/scss/helpers";       // .sticky-top, .text-bg-*, link-*
 
 // --- Utilities API ------------------------------------------------------

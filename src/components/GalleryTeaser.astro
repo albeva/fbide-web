@@ -27,9 +27,7 @@ const moreIndex = limit ?? 0;
             <button
                 type="button"
                 class="gallery-teaser-thumb"
-                data-bs-toggle="modal"
-                data-bs-target="#galleryModal"
-                data-index={index}
+                data-gallery-index={index}
                 aria-label={`Open: ${item.caption}`}
             >
                 <img src={item.thumb ?? item.src} alt={item.caption} loading="lazy" />
@@ -42,9 +40,7 @@ const moreIndex = limit ?? 0;
         <button
             type="button"
             class="btn btn-sm btn-outline-primary"
-            data-bs-toggle="modal"
-            data-bs-target="#galleryModal"
-            data-index={moreIndex}
+            data-gallery-index={moreIndex}
         >
             More images &raquo;
         </button>

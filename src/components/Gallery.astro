@@ -1,9 +1,10 @@
 ---
-// Gallery modal — full-size image area on top, thumbnail strip at the
-// bottom. Arrow-key navigation while the modal is open. Triggers come
-// from elsewhere (e.g. GalleryTeaser): any element with
-// data-bs-target="#galleryModal" + data-index="<n>" opens this modal
-// at the matching slide.
+// Gallery dialog — full-size image area on top, thumbnail strip at the
+// bottom. Built on the native <dialog> element: showModal() gives a
+// top-layer overlay, a ::backdrop, focus trapping and Esc-to-close for
+// free — no Bootstrap JS. Triggers live elsewhere (e.g. GalleryTeaser):
+// any element with data-gallery-index="<n>" opens the dialog at that
+// slide.
 import galleryData from '../data/gallery.json';
 
 interface GalleryItem {
@@ -14,44 +15,40 @@ interface GalleryItem {
 
 const gallery = galleryData as GalleryItem[];
 ---
-<div class="modal fade" id="galleryModal" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-gallery">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="galleryModalLabel">FBIde in action</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body p-0">
-                <div class="gallery-main">
-                    <img id="galleryMainImage" src="" alt="" />
-                </div>
-                <ul class="gallery-strip list-unstyled" id="galleryStrip" role="tablist">
-                    {gallery.map((item, index) => (
-                        <li>
-                            <button
-                                type="button"
-                                class="gallery-strip-thumb"
-                                data-index={index}
-                                aria-label={item.caption}
-                            >
-                                <img src={item.thumb ?? item.src} alt={item.caption} loading="lazy" />
-                            </button>
-                        </li>
-                    ))}
-                </ul>
-            </div>
-        </div>
+<dialog id="galleryModal" class="gallery-dialog" aria-labelledby="galleryModalLabel">
+    <div class="gallery-dialog-header">
+        <h2 class="gallery-dialog-title" id="galleryModalLabel">FBIde in action</h2>
+        <button type="button" class="gallery-dialog-close" data-gallery-close aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
-</div>
+    <div class="gallery-main">
+        <img id="galleryMainImage" src="" alt="" />
+    </div>
+    <ul class="gallery-strip list-unstyled" id="galleryStrip" role="tablist">
+        {gallery.map((item, index) => (
+            <li>
+                <button
+                    type="button"
+                    class="gallery-strip-thumb"
+                    data-index={index}
+                    aria-label={item.caption}
+                >
+                    <img src={item.thumb ?? item.src} alt={item.caption} loading="lazy" />
+                </button>
+            </li>
+        ))}
+    </ul>
+</dialog>
 
 <script is:inline define:vars={{ gallery }}>
     document.addEventListener('DOMContentLoaded', () => {
-        const modalEl = document.getElementById('galleryModal');
-        if (!modalEl) return;
+        const dialog = document.getElementById('galleryModal');
+        if (!dialog) return;
 
-        const imgEl = modalEl.querySelector('#galleryMainImage');
-        const titleEl = modalEl.querySelector('#galleryModalLabel');
-        const strip = modalEl.querySelector('#galleryStrip');
+        const imgEl = dialog.querySelector('#galleryMainImage');
+        const titleEl = dialog.querySelector('#galleryModalLabel');
+        const strip = dialog.querySelector('#galleryStrip');
         if (!imgEl || !titleEl || !strip) return;
 
         let current = 0;
@@ -75,12 +72,27 @@ const gallery = galleryData as GalleryItem[];
             }
         }
 
-        // Open from a thumbnail trigger (GalleryTeaser, etc.)
-        modalEl.addEventListener('show.bs.modal', (event) => {
-            const trigger = event.relatedTarget;
-            const raw = trigger ? trigger.getAttribute('data-index') : null;
-            const index = raw === null ? 0 : parseInt(raw, 10);
-            show(Number.isNaN(index) ? 0 : index);
+        function open(index) {
+            show(index);
+            if (!dialog.open) dialog.showModal();
+        }
+
+        // Open from any trigger in the document (GalleryTeaser tiles + CTA).
+        document.querySelectorAll('[data-gallery-index]').forEach((trigger) => {
+            trigger.addEventListener('click', () => {
+                const raw = trigger.getAttribute('data-gallery-index');
+                const index = raw === null ? 0 : parseInt(raw, 10);
+                open(Number.isNaN(index) ? 0 : index);
+            });
+        });
+
+        // Close: the header button, or a click on the backdrop — for a
+        // modal <dialog> a backdrop click reports the dialog as target.
+        dialog.querySelectorAll('[data-gallery-close]').forEach((btn) => {
+            btn.addEventListener('click', () => dialog.close());
+        });
+        dialog.addEventListener('click', (event) => {
+            if (event.target === dialog) dialog.close();
         });
 
         // Strip clicks switch the active image.
@@ -92,8 +104,8 @@ const gallery = galleryData as GalleryItem[];
             show(Number.isNaN(index) ? 0 : index);
         });
 
-        // Arrow-key navigation while the modal is shown.
-        function onKey(event) {
+        // Arrow-key navigation while the dialog is open (Esc closes natively).
+        dialog.addEventListener('keydown', (event) => {
             if (event.key === 'ArrowLeft') {
                 event.preventDefault();
                 show(current - 1);
@@ -101,13 +113,6 @@ const gallery = galleryData as GalleryItem[];
                 event.preventDefault();
                 show(current + 1);
             }
-        }
-
-        modalEl.addEventListener('shown.bs.modal', () => {
-            document.addEventListener('keydown', onKey);
-        });
-        modalEl.addEventListener('hidden.bs.modal', () => {
-            document.removeEventListener('keydown', onKey);
         });
     });
 </script>

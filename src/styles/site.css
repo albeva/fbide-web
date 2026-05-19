@@ -192,19 +192,58 @@ article .date {
     object-fit: cover;
 }
 
-/* --- Gallery modal (main image + bottom strip) ------------------------ */
+/* --- Gallery dialog (native <dialog>) --------------------------------- */
 
-/* Source images are 838x630. Cap dialog width to comfortably fit one
-   image plus a touch of padding so the modal hugs the screenshot
-   instead of leaving wide empty bands on the sides. */
-.modal-gallery {
+/* Source images are 838x630. Cap width so the dialog hugs the
+   screenshot instead of leaving wide empty bands at the sides.
+   overflow:hidden clips the strip's footer to the rounded corners. */
+.gallery-dialog {
+    width: 100%;
     max-width: min(95vw, 868px);
+    padding: 0;
+    border: none;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background: var(--fbide-card-bg);
+    color: var(--fbide-text);
 }
 
-/* Clip child backgrounds (the strip's grey footer) to the dialog's
-   rounded shape so the bottom corners match the rounded header. */
-.modal-gallery .modal-content {
-    overflow: hidden;
+.gallery-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.gallery-dialog-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.6rem 1rem;
+    border-bottom: 1px solid var(--fbide-divider);
+}
+
+.gallery-dialog-title {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.gallery-dialog-close {
+    flex: none;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    font-size: 1.5rem;
+    line-height: 1;
+    color: inherit;
+    background: transparent;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+}
+
+.gallery-dialog-close:hover,
+.gallery-dialog-close:focus-visible {
+    background: var(--fbide-bg);
+    outline: none;
 }
 
 .gallery-main {
