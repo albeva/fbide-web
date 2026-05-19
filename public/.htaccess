@@ -24,13 +24,15 @@ DirectoryIndex index.html
     RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
     # ------------------------------------------------------------------------
-    # Extensionless URLs — serve /download from /download.html. The .html
-    # version still works directly so existing inbound links don't break.
+    # Extensionless URLs — 301-redirect /download to /download.html so the
+    # .html page is the single canonical URL. Old inbound links to the
+    # extensionless path keep working via the redirect. A trailing slash is
+    # also handled (/changelog/ -> /changelog.html).
     # ------------------------------------------------------------------------
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI}.html -f
-    RewriteRule ^(.+?)/?$ /$1.html [L]
+    RewriteRule ^(.+?)/?$ /$1.html [R=301,L]
 </IfModule>
 
 # ----------------------------------------------------------------------------
