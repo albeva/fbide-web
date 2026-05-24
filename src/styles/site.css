@@ -148,20 +148,37 @@ article .date {
     vertical-align: -0.2em;
 }
 
+/* Card layout: title and buttons share row 1 (title at left, buttons
+   anchored top-right via grid-column: 2), description and notes span
+   the full card width on subsequent rows. `.meta` uses display: contents
+   so its block children participate directly in the card's grid. */
 .download-card {
     border: 1px solid var(--fbide-card-border);
     border-radius: 0.5rem;
-    padding: 1.25rem 1.5rem;
+    padding: 1.25rem;
     background: var(--fbide-card-bg);
     margin-bottom: 1rem;
-    display: flex;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    gap: 1.25rem;
+
+    display: grid;
+    grid-template-columns: 1fr auto;
+    column-gap: 1.25rem;
 }
 
-.download-card .meta {
-    flex: 1 1 14rem;
+/* Stacked variant: outer card is block; each .download-card-row inside
+   becomes its own grid (Sources / Legacy rows). */
+.download-card-stacked {
+    display: block;
+}
+
+.download-card-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    column-gap: 1.25rem;
+}
+
+.download-card .meta,
+.download-card-row .meta {
+    display: contents;
 }
 
 .download-card h2,
@@ -170,11 +187,30 @@ article .date {
     margin: 0 0 0.25rem;
 }
 
+.download-card .meta > h2,
+.download-card .meta > h3,
+.download-card-row .meta > h3 {
+    grid-column: 1;
+}
+
+.download-card .meta > p,
+.download-card-row .meta > p {
+    grid-column: 1 / -1;
+}
+
 .download-card-actions {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: start;
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    flex-shrink: 0;
+}
+
+.download-card-row + .download-card-row {
+    margin-top: 1rem;
+    border-top: 1px solid var(--fbide-divider);
+    padding-top: 1rem;
 }
 
 .btn-icon {
@@ -184,33 +220,19 @@ article .date {
     margin-right: 0.35rem;
 }
 
-/* Stacked variant: multiple rows inside a single card, separated by a
-   thin divider. Used by the "Other downloads" group (Sources / Legacy). */
-.download-card-stacked {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 1rem;
-}
-
-.download-card-row {
-    display: flex;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    gap: 1.25rem;
-}
-
-.download-card-row + .download-card-row {
-    border-top: 1px solid var(--fbide-divider);
-    padding-top: 1rem;
-}
-
-/* On narrow viewports the meta + actions can't comfortably sit side by
-   side — stack the buttons under the title instead of letting flex
-   shrink the description into a column of one-word-per-line. */
+/* On narrow viewports drop the two-column grid — title, description,
+   then buttons stack in source order with the buttons last. */
 @media (max-width: 575.98px) {
     .download-card,
     .download-card-row {
-        flex-direction: column;
+        display: block;
+    }
+    .download-card .meta,
+    .download-card-row .meta {
+        display: block;
+    }
+    .download-card-actions {
+        margin-top: 1rem;
     }
 }
 
