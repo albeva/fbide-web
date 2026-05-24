@@ -134,6 +134,20 @@ article .date {
 
 /* --- Download cards ---------------------------------------------------- */
 
+.platform-icon {
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.125em;
+    margin-right: 0.4rem;
+}
+
+/* Tux is taller than 1:1 — size by height to preserve aspect ratio. */
+.platform-icon-img {
+    width: auto;
+    height: 1.1em;
+    vertical-align: -0.2em;
+}
+
 .download-card {
     border: 1px solid var(--fbide-card-border);
     border-radius: 0.5rem;
