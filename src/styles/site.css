@@ -155,17 +155,63 @@ article .date {
     background: var(--fbide-card-bg);
     margin-bottom: 1rem;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
     gap: 1.25rem;
 }
 
 .download-card .meta {
-    flex: 1 1 auto;
+    flex: 1 1 14rem;
 }
 
+.download-card h2,
 .download-card h3 {
     font-size: 1.15rem;
     margin: 0 0 0.25rem;
+}
+
+.download-card-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+.btn-icon {
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.125em;
+    margin-right: 0.35rem;
+}
+
+/* Stacked variant: multiple rows inside a single card, separated by a
+   thin divider. Used by the "Other downloads" group (Sources / Legacy). */
+.download-card-stacked {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+}
+
+.download-card-row {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+}
+
+.download-card-row + .download-card-row {
+    border-top: 1px solid var(--fbide-divider);
+    padding-top: 1rem;
+}
+
+/* On narrow viewports the meta + actions can't comfortably sit side by
+   side — stack the buttons under the title instead of letting flex
+   shrink the description into a column of one-word-per-line. */
+@media (max-width: 575.98px) {
+    .download-card,
+    .download-card-row {
+        flex-direction: column;
+    }
 }
 
 /* --- Gallery teaser (home page column) -------------------------------- */
