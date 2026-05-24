@@ -21,6 +21,23 @@ const windowsDownloads = [
     },
 ];
 
+const macosDownloads = [
+    {
+        label: 'FBIde for macOS (Apple Silicon)',
+        recommended: false,
+        href: release.downloads.macosArm64,
+        filename: `fbide-${release.version}-macos-arm64.dmg`,
+        note: 'For M1/M2/M3 Macs. Requires macOS 12 Monterey or later.',
+    },
+    {
+        label: 'FBIde for macOS (Intel)',
+        recommended: false,
+        href: release.downloads.macosX64,
+        filename: `fbide-${release.version}-macos-x86_64.dmg`,
+        note: 'For Intel Macs. Requires macOS 12 Monterey or later.',
+    },
+];
+
 const linuxDownloads = [
     {
         label: 'FBIde for Linux (64-bit AppImage)',
@@ -33,14 +50,14 @@ const linuxDownloads = [
 ---
 <BaseLayout
     title={`Download FBIde ${release.version}`}
-    description={`Download FBIde ${release.version} for Windows (64-bit and 32-bit) and Linux (AppImage).`}
+    description={`Download FBIde ${release.version} for Windows (64-bit and 32-bit), macOS (Apple Silicon and Intel) and Linux (AppImage).`}
     activeNav="download"
 >
     <section>
         <div class="container">
             <div class="row g-4">
                 <div class="col-md-8">
-                    <h1 class="h2">Windows</h1>
+                    <h1 class="h2"><span aria-hidden="true">🪟</span> Windows</h1>
 
                     {windowsDownloads.map((dl) => (
                         <div class="download-card">
@@ -57,7 +74,31 @@ const linuxDownloads = [
                         </div>
                     ))}
 
-                    <h2 class="h2 mt-4">Linux</h2>
+                    <h2 class="h2 mt-4"><span aria-hidden="true">🍎</span> macOS</h2>
+
+                    {macosDownloads.map((dl) => (
+                        <div class="download-card">
+                            <div class="meta">
+                                <h3>{dl.label} {dl.recommended && (<span class="badge text-bg-success">Recommended</span>)} {release.isPrerelease && (<span class="badge text-bg-warning">Pre-release</span>)}</h3>
+                                <p class="text-muted small mb-1">
+                                    v{release.version}
+                                    &middot; released {release.releaseDate}
+                                    &middot; <a href={`/changelog/${release.version}.html`}>changelog</a>
+                                </p>
+                                <p class="mb-0" set:html={dl.note}></p>
+                            </div>
+                            <a class="btn btn-primary" href={dl.href}>Download</a>
+                        </div>
+                    ))}
+
+                    <p class="text-muted small mt-2 mb-0">
+                        <strong>Note:</strong> FBIde is not signed with an Apple Developer
+                        certificate. On first launch macOS will block the app — open
+                        <em>System Settings → Privacy &amp; Security</em> and click
+                        <em>Open Anyway</em> to allow it.
+                    </p>
+
+                    <h2 class="h2 mt-4"><span aria-hidden="true">🐧</span> Linux</h2>
 
                     {linuxDownloads.map((dl) => (
                         <div class="download-card">
@@ -74,7 +115,7 @@ const linuxDownloads = [
                         </div>
                     ))}
 
-                    <h2 class="h4 mt-4">Other</h2>
+                    <h2 class="h4 mt-4"><span aria-hidden="true">💾</span> Other</h2>
 
                     <div class="download-card">
                         <div class="meta">
@@ -85,7 +126,7 @@ const linuxDownloads = [
                         <a class="btn btn-outline-secondary" href="/download/legacy.html">Browse</a>
                     </div>
 
-                    <h2 class="h4 mt-4">Source code</h2>
+                    <h2 class="h4 mt-4"><span aria-hidden="true">📦</span> Source code</h2>
 
                     <div class="download-card">
                         <div class="meta">
