@@ -1,15 +1,15 @@
 {
-  "version": "0.5.0.rc-3",
-  "tag": "v0.5.0.rc-3",
+  "version": "0.5.0.rc-4",
+  "tag": "v0.5.0.rc-4",
   "isPrerelease": true,
   "downloads": {
-    "win64": "https://github.com/albeva/fbide/releases/download/v0.5.0.rc-3/fbide-0.5.0.rc-3-win64.zip",
-    "win32": "https://github.com/albeva/fbide/releases/download/v0.5.0.rc-3/fbide-0.5.0.rc-3-win32.zip",
-    "linux64": "https://github.com/albeva/fbide/releases/download/v0.5.0.rc-3/fbide-0.5.0.rc-3-x86_64.AppImage",
-    "macosArm64": "https://github.com/albeva/fbide/releases/download/v0.5.0.rc-3/fbide-0.5.0.rc-3-macos-arm64.dmg",
-    "macosX64": "https://github.com/albeva/fbide/releases/download/v0.5.0.rc-3/fbide-0.5.0.rc-3-macos-x86_64.dmg"
+    "win64": "https://github.com/albeva/fbide/releases/download/v0.5.0.rc-4/fbide-0.5.0.rc-4-win64.zip",
+    "win32": "https://github.com/albeva/fbide/releases/download/v0.5.0.rc-4/fbide-0.5.0.rc-4-win32.zip",
+    "linux64": "https://github.com/albeva/fbide/releases/download/v0.5.0.rc-4/fbide-0.5.0.rc-4-x86_64.AppImage",
+    "macosArm64": "https://github.com/albeva/fbide/releases/download/v0.5.0.rc-4/fbide-0.5.0.rc-4-macos-arm64.dmg",
+    "macosX64": "https://github.com/albeva/fbide/releases/download/v0.5.0.rc-4/fbide-0.5.0.rc-4-macos-x86_64.dmg"
   },
-  "releasePage": "https://github.com/albeva/fbide/releases/tag/v0.5.0.rc-3",
-  "releaseDate": "2026-05-24",
+  "releasePage": "https://github.com/albeva/fbide/releases/tag/v0.5.0.rc-4",
+  "releaseDate": "2026-05-31",
   "githubRepo": "https://github.com/albeva/fbide"
 }
