@@ -18,7 +18,7 @@
     --fbide-link-hover-bg:#f1f3f5;
 
     /* Always-on chrome colours — hero / navbar / footer never flip. */
-    --fbide-hero-bg:      #2b2b2b;
+    --fbide-hero-bg:      #000;
 
     --fbide-section-y:    3rem;
 }
@@ -71,9 +71,8 @@ main {
 /* --- Hero band --------------------------------------------------------- */
 
 .hero {
-    /* Repeating texture from the 2012 site, layered over a dark fallback
-       so the band stays readable while the JPEG loads (or fails). */
-    background: var(--fbide-hero-bg) url("/images/header.jpg") repeat;
+    /* Solid black strip — the banner image carries the visual weight. */
+    background: var(--fbide-hero-bg);
     color: #fff;
     padding: 3rem 0;
     border-top: 1px solid #000;
@@ -96,9 +95,6 @@ main {
 .hero-illustration {
     max-width: 100%;
     height: auto;
-    /* Lift the white logo off the dark textured band, matching the
-       hero text's drop-shadow treatment. */
-    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
 }
 
 /* --- Section spacing --------------------------------------------------- */
