@@ -1,7 +1,7 @@
 /*
  * FBIde site overrides on top of Bootstrap 5.
  * Replicates the spirit of the original 2012 design: dark navbar/footer
- * bracketing a light cream body, a wide hero band with a horse image,
+ * bracketing a light cream body, a wide hero band with the logo mark,
  * and clutter-free section spacing.
  */
 
@@ -96,6 +96,9 @@ main {
 .hero-illustration {
     max-width: 100%;
     height: auto;
+    /* Lift the white logo off the dark textured band, matching the
+       hero text's drop-shadow treatment. */
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
 }
 
 /* --- Section spacing --------------------------------------------------- */

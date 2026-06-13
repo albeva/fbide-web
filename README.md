@@ -14,9 +14,10 @@ fbide_website/
 ├── astro.config.mjs       Astro config (static, single-output)
 ├── package.json
 ├── public/                Static assets served as-is
-│   ├── favicon.png
+│   ├── favicon.ico        Icon set (+ PNG sizes, apple-touch, manifest)
+│   ├── site.webmanifest
 │   └── images/
-│       ├── horse.png      Hero illustration
+│       ├── fbide-logo.svg Hero logo (white horse mark)
 │       └── screenshots/   Gallery images (PNG)
 └── src/
     ├── layouts/
