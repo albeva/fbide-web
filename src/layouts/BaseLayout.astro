@@ -93,7 +93,7 @@ const navItems = [
     <Analytics />
 </head>
 <body>
-    <nav class="navbar navbar-expand-md bg-dark sticky-top" data-bs-theme="dark" aria-label="Primary">
+    <nav class="navbar navbar-expand-md site-navbar sticky-top" aria-label="Primary">
         <div class="container">
             <a class="navbar-brand fw-bold" href="/">FBIde</a>
             <button
@@ -118,13 +118,13 @@ const navItems = [
                         </li>
                     ))}
                 </ul>
-                <a class="btn btn-outline-light btn-sm" href="https://github.com/albeva/fbide" rel="noopener noreferrer" target="_blank">
+                <a class="btn btn-outline-secondary btn-sm" href="https://github.com/albeva/fbide" rel="noopener noreferrer" target="_blank">
                     GitHub
                 </a>
                 <button
                     id="themeToggle"
                     type="button"
-                    class="btn btn-outline-light btn-sm ms-2 theme-toggle"
+                    class="btn btn-outline-secondary btn-sm ms-2 theme-toggle"
                     aria-label="Toggle colour theme"
                     title="Toggle colour theme"
                 >
@@ -150,12 +150,12 @@ const navItems = [
         <slot />
     </main>
 
-    <footer class="site-footer text-light bg-dark py-3" data-bs-theme="dark">
+    <footer class="site-footer py-3">
         <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
             <p class="mb-0 small">&copy; Albert Varaksin 2004 – {new Date().getFullYear()}</p>
             <ul class="footer-badges list-unstyled mb-0">
                 <li>
-                    <a class="link-light small" href="https://www.freebasic.net/" rel="noopener noreferrer" target="_blank">FreeBASIC</a>
+                    <a class="link-secondary small" href="https://www.freebasic.net/" rel="noopener noreferrer" target="_blank">FreeBASIC</a>
                 </li>
                 <li>
                     <a href="https://www.freebasic-portal.de/" rel="noopener noreferrer" target="_blank" title="Deutsche FreeBASIC-Community">

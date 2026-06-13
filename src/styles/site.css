@@ -1,8 +1,8 @@
 /*
  * FBIde site overrides on top of Bootstrap 5.
- * Replicates the spirit of the original 2012 design: dark navbar/footer
- * bracketing a light cream body, a wide hero band with the logo mark,
- * and clutter-free section spacing.
+ * Replicates the spirit of the original 2012 design: a brand hero band
+ * with the logo mark, theme-adaptive navbar/footer, and clutter-free
+ * section spacing.
  */
 
 /* Light theme (default). All variables get re-bound under
@@ -17,8 +17,20 @@
     --fbide-muted:        #888888;
     --fbide-link-hover-bg:#f1f3f5;
 
-    /* Always-on chrome colours — hero / navbar / footer never flip. */
-    --fbide-hero-bg:      #000;
+    /* Navbar + footer chrome — flips with the theme. */
+    --fbide-chrome-bg:    #f1f3f5;
+    --fbide-chrome-border:#dcdcdc;
+
+    /* Always-on brand strip — the hero never flips. Text + primary button
+       derived from the navy hue (219°) via HCY. The button text is the same
+       white-ish as the hero text, so the button bg is a deeper blue to stay
+       legible (text ~3.2:1; ~4.2:1 against the navy so it still pops). */
+    --fbide-hero-bg:       #12203a;
+    --fbide-hero-text:     #dfe9fc;
+    --fbide-hero-link:     #7da5ff;
+    --fbide-hero-btn-bg:   #357bff;
+    --fbide-hero-btn-fg:   var(--fbide-hero-text);
+    --fbide-hero-btn-hover:#1e6dff;
 
     --fbide-section-y:    3rem;
 }
@@ -31,6 +43,8 @@
     --fbide-divider:      #3a3f44;
     --fbide-muted:        #9aa0a6;
     --fbide-link-hover-bg:#2e3338;
+    --fbide-chrome-bg:    #15181b;
+    --fbide-chrome-border:#3a3f44;
 }
 
 
@@ -68,16 +82,31 @@ main {
 [data-bs-theme="dark"] .theme-icon-light { display: none; }
 [data-bs-theme="dark"] .theme-icon-dark  { display: inline; }
 
+/* --- Navbar chrome (flips with the theme) ----------------------------- */
+
+.site-navbar {
+    background: var(--fbide-chrome-bg);
+    border-bottom: 1px solid var(--fbide-chrome-border);
+}
+
 /* --- Hero band --------------------------------------------------------- */
 
 .hero {
-    /* Solid black strip — the banner image carries the visual weight. */
+    /* Solid navy brand strip. No band padding: the banner image drives the
+       bar height, so its top/bottom edges hug the image. overflow clips the
+       nudged-down illustration (see .hero-illustration). */
     background: var(--fbide-hero-bg);
-    color: #fff;
-    padding: 3rem 0;
+    color: var(--fbide-hero-text);
     border-top: 1px solid #000;
     border-bottom: 1px solid #000;
-    box-shadow: inset 0 -10px 10px -10px #000;
+    overflow: hidden;
+}
+
+/* The text column carries its own padding (the band has none). When the
+   text is taller than the image — e.g. a zoomed font — it drives the bar
+   height and align-items-center floats the image against it. */
+.hero-text {
+    padding-block: 1rem;
 }
 
 .hero h1 {
@@ -90,11 +119,44 @@ main {
     font-size: 1.05rem;
     line-height: 1.5;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+    margin-right: 20px;
 }
 
 .hero-illustration {
+    display: block;
+    margin-inline: auto;
     max-width: 100%;
     height: auto;
+    /* Nudge the artwork down ~20px. transform doesn't reflow, so the band
+       height is unchanged: the top gains 20px of navy and the bottom 20px
+       is clipped by the band's overflow:hidden. */
+    transform: translateY(20px);
+}
+
+/* Primary CTA — HCY-derived tonal blue with navy text that echoes the
+   hero background. */
+.hero .btn-primary {
+    --bs-btn-bg: var(--fbide-hero-btn-bg);
+    --bs-btn-border-color: var(--fbide-hero-btn-bg);
+    --bs-btn-color: var(--fbide-hero-btn-fg);
+    --bs-btn-hover-bg: var(--fbide-hero-btn-hover);
+    --bs-btn-hover-border-color: var(--fbide-hero-btn-hover);
+    --bs-btn-hover-color: var(--fbide-hero-btn-fg);
+    --bs-btn-active-bg: var(--fbide-hero-btn-hover);
+    --bs-btn-active-border-color: var(--fbide-hero-btn-hover);
+    --bs-btn-active-color: var(--fbide-hero-btn-fg);
+}
+
+/* Brand-blue accent for the hero's secondary (outline) button. */
+.hero .btn-outline-light {
+    --bs-btn-color: var(--fbide-hero-link);
+    --bs-btn-border-color: var(--fbide-hero-link);
+    --bs-btn-hover-bg: var(--fbide-hero-link);
+    --bs-btn-hover-border-color: var(--fbide-hero-link);
+    --bs-btn-hover-color: var(--fbide-hero-bg);
+    --bs-btn-active-bg: var(--fbide-hero-link);
+    --bs-btn-active-border-color: var(--fbide-hero-link);
+    --bs-btn-active-color: var(--fbide-hero-bg);
 }
 
 /* --- Section spacing --------------------------------------------------- */
@@ -501,6 +563,8 @@ article .date {
 
 .site-footer {
     flex-shrink: 0;
+    background: var(--fbide-chrome-bg);
+    border-top: 1px solid var(--fbide-chrome-border);
 }
 
 .site-footer a {

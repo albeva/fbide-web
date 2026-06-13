@@ -17,7 +17,7 @@ fbide_website/
 │   ├── favicon.ico        Icon set (+ PNG sizes, apple-touch, manifest)
 │   ├── site.webmanifest
 │   └── images/
-│       ├── hero-banner.png Hero banner (horse + wordmark)
+│       ├── hero-banner.png Hero banner (horse + wordmark + reflection)
 │       └── screenshots/   Gallery images (PNG)
 └── src/
     ├── layouts/
