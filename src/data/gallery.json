@@ -1,12 +1,15 @@
 [
-  { "src": "/images/screenshots/about.png",                  "caption": "About" },
-  { "src": "/images/screenshots/browser.png",                 "caption": "Browser" },
-  { "src": "/images/screenshots/integrated-file-browser.png", "caption": "Integrated File Browser" },
-  { "src": "/images/screenshots/code-formatter.png",          "caption": "Code Formatter" },
-  { "src": "/images/screenshots/dark-theme.png",              "caption": "Dark Theme" },
-  { "src": "/images/screenshots/light-theme.png",             "caption": "Light Theme" },
-  { "src": "/images/screenshots/error-console.png",           "caption": "Error Console" },
-  { "src": "/images/screenshots/panels.png",                  "caption": "Panels" },
-  { "src": "/images/screenshots/multi-lingual.png",           "caption": "Multi-lingual" },
-  { "src": "/images/screenshots/settings.png",                "caption": "Settings" }
+  { "src": "/images/screenshots/01-about.png",                   "thumb": "/images/screenshots/thumbs/01-about.png",                   "caption": "About" },
+  { "src": "/images/screenshots/02-dark-theme.png",              "thumb": "/images/screenshots/thumbs/02-dark-theme.png",              "caption": "Dark Theme" },
+  { "src": "/images/screenshots/03-error-console.png",           "thumb": "/images/screenshots/thumbs/03-error-console.png",           "caption": "Error Console" },
+  { "src": "/images/screenshots/04-focused-file-browser.png",    "thumb": "/images/screenshots/thumbs/04-focused-file-browser.png",    "caption": "Focused File Browser" },
+  { "src": "/images/screenshots/05-layouts.png",                 "thumb": "/images/screenshots/thumbs/05-layouts.png",                 "caption": "Layouts" },
+  { "src": "/images/screenshots/06-highlight-scopes.png",        "thumb": "/images/screenshots/thumbs/06-highlight-scopes.png",        "caption": "Highlight Scopes" },
+  { "src": "/images/screenshots/07-highlight-words.png",         "thumb": "/images/screenshots/thumbs/07-highlight-words.png",         "caption": "Highlight Words" },
+  { "src": "/images/screenshots/08-code-completion.png",         "thumb": "/images/screenshots/thumbs/08-code-completion.png",         "caption": "Code Completion" },
+  { "src": "/images/screenshots/09-multi-lingual.png",           "thumb": "/images/screenshots/thumbs/09-multi-lingual.png",           "caption": "Multi-lingual" },
+  { "src": "/images/screenshots/10-format-window.png",           "thumb": "/images/screenshots/thumbs/10-format-window.png",           "caption": "Format Window" },
+  { "src": "/images/screenshots/11-settings.png",                "thumb": "/images/screenshots/thumbs/11-settings.png",                "caption": "Settings" },
+  { "src": "/images/screenshots/12-compiler-configurations.png", "thumb": "/images/screenshots/thumbs/12-compiler-configurations.png", "caption": "Compiler Configurations" },
+  { "src": "/images/screenshots/13-file-types.png",              "thumb": "/images/screenshots/thumbs/13-file-types.png",              "caption": "File Types" }
 ]

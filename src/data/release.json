@@ -1,15 +1,20 @@
 {
-  "version": "0.5.0.rc-6",
-  "tag": "v0.5.0.rc-6",
-  "isPrerelease": true,
+  "version": "0.5.0",
+  "tag": "v0.5.0",
+  "isPrerelease": false,
+  "fbcVersion": "1.10.1",
   "downloads": {
-    "win64": "https://github.com/albeva/fbide/releases/download/v0.5.0.rc-6/fbide-0.5.0.rc-6-win64.zip",
-    "win32": "https://github.com/albeva/fbide/releases/download/v0.5.0.rc-6/fbide-0.5.0.rc-6-win32.zip",
-    "linux64": "https://github.com/albeva/fbide/releases/download/v0.5.0.rc-6/fbide-0.5.0.rc-6-x86_64.AppImage",
-    "macosArm64": "https://github.com/albeva/fbide/releases/download/v0.5.0.rc-6/fbide-0.5.0.rc-6-macos-arm64.dmg",
-    "macosX64": "https://github.com/albeva/fbide/releases/download/v0.5.0.rc-6/fbide-0.5.0.rc-6-macos-x86_64.dmg"
+    "win64Setup": "https://github.com/albeva/fbide/releases/download/v0.5.0/fbide-0.5.0-win64-setup.exe",
+    "win32Setup": "https://github.com/albeva/fbide/releases/download/v0.5.0/fbide-0.5.0-win32-setup.exe",
+    "win64": "https://github.com/albeva/fbide/releases/download/v0.5.0/fbide-0.5.0-win64.zip",
+    "win32": "https://github.com/albeva/fbide/releases/download/v0.5.0/fbide-0.5.0-win32.zip",
+    "winArm64": "https://github.com/albeva/fbide/releases/download/v0.5.0/fbide-0.5.0-winarm64.zip",
+    "linux64": "https://github.com/albeva/fbide/releases/download/v0.5.0/fbide-0.5.0-x86_64.AppImage",
+    "linuxArm64": "https://github.com/albeva/fbide/releases/download/v0.5.0/fbide-0.5.0-aarch64.AppImage",
+    "macosArm64": "https://github.com/albeva/fbide/releases/download/v0.5.0/fbide-0.5.0-macos-arm64.dmg",
+    "macosX64": "https://github.com/albeva/fbide/releases/download/v0.5.0/fbide-0.5.0-macos-x86_64.dmg"
   },
-  "releasePage": "https://github.com/albeva/fbide/releases/tag/v0.5.0.rc-6",
-  "releaseDate": "2026-06-07",
+  "releasePage": "https://github.com/albeva/fbide/releases/tag/v0.5.0",
+  "releaseDate": "2026-06-21",
   "githubRepo": "https://github.com/albeva/fbide"
 }

@@ -274,6 +274,12 @@ article .date {
     padding-top: 1rem;
 }
 
+/* Stacked-card platform header (e.g. Windows) sits directly in the card,
+   not inside a row — give its title room before the first build row. */
+.download-card-stacked > .meta > h2 {
+    margin-bottom: 0.85rem;
+}
+
 .btn-icon {
     width: 1em;
     height: 1em;
@@ -315,10 +321,10 @@ article .date {
     overflow: hidden;
     cursor: pointer;
     transition: border-color 150ms ease, transform 150ms ease;
-    /* Match the source-image aspect (838x630 ~ 4:3) so the thumbs
+    /* Match the source-image aspect (1024x768 = 4:3) so the thumbs
        don't crop or letterbox; combined with a single-column layout
        this gives a column roughly 1/3 of the viewport on desktop. */
-    aspect-ratio: 838 / 630;
+    aspect-ratio: 4 / 3;
 }
 
 .gallery-teaser-thumb:hover,
@@ -337,12 +343,12 @@ article .date {
 
 /* --- Gallery dialog (native <dialog>) --------------------------------- */
 
-/* Source images are 838x630. Cap width so the dialog hugs the
-   screenshot instead of leaving wide empty bands at the sides.
-   overflow:hidden clips the strip's footer to the rounded corners. */
+/* Source images are 1024x768. Cap width so the dialog hugs the
+   screenshot at native size instead of leaving empty bands at the
+   sides; overflow:hidden clips the strip's footer to the corners. */
 .gallery-dialog {
     width: 100%;
-    max-width: min(95vw, 868px);
+    max-width: min(96vw, 1024px);
     padding: 0;
     border: none;
     border-radius: 0.5rem;
@@ -392,7 +398,10 @@ article .date {
 .gallery-main {
     background: var(--fbide-bg);
     text-align: center;
-    padding: 0.6rem 0;
+    /* Horizontal padding matches the strip below so the image's side
+       edges line up with the first thumb's leading edge and the last
+       thumb's trailing edge — everything sits inside the 1024 dialog. */
+    padding: 1rem;
 }
 
 .gallery-main img {
@@ -409,7 +418,9 @@ article .date {
     justify-content: center;
     gap: 0.35rem;
     margin: 0;
-    padding: 0.6rem 0.75rem;
+    /* Horizontal padding equals .gallery-main so the strip's content box
+       (and thus the first/last thumb edges) aligns with the image above. */
+    padding: 0.6rem 1rem;
     overflow: hidden;
     border-top: 1px solid var(--fbide-divider);
     background: var(--fbide-card-bg);
@@ -424,7 +435,7 @@ article .date {
 
 .gallery-strip-thumb {
     width: 100%;
-    aspect-ratio: 838 / 630;
+    aspect-ratio: 4 / 3;
     padding: 0;
     border: 2px solid transparent;
     background: var(--fbide-card-bg);

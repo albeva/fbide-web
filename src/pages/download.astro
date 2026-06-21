@@ -8,7 +8,7 @@ const sourceHref = `${release.githubRepo}/releases`;
 ---
 <BaseLayout
     title={`Download FBIde ${release.version}`}
-    description={`Download FBIde ${release.version} for Windows (64-bit and 32-bit), macOS (Apple Silicon and Intel) and Linux (AppImage).`}
+    description={`Download FBIde ${release.version} for Windows (installer or portable — 64-bit, 32-bit and ARM64), macOS (Apple Silicon and Intel) and Linux (AppImage — x86-64 and ARM64).`}
     activeNav="download"
 >
     <section>
@@ -22,7 +22,7 @@ const sourceHref = `${release.githubRepo}/releases`;
                         {release.isPrerelease && (<> &middot; <span class="badge text-bg-warning align-middle">Pre-release</span></>)}
                     </p>
 
-                    <div class="download-card">
+                    <div class="download-card download-card-stacked">
                         <div class="meta">
                             <h2>
                                 <svg class="platform-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
@@ -30,18 +30,33 @@ const sourceHref = `${release.githubRepo}/releases`;
                                 </svg>
                                 Windows
                             </h2>
-                            <p class="mb-1">
-                                Windows 7 and up.
-                            </p>
-                            <p class="text-muted small mb-0">
-                                <strong>Note:</strong> Some versions of Windows may need the
-                                <a href="https://www.microsoft.com/en-us/download/details.aspx?id=48145" rel="noopener noreferrer" target="_blank">Visual C++ 2015 Redistributable</a>.
-                            </p>
                         </div>
-                        <div class="download-card-actions">
-                            <a class="btn btn-sm btn-primary" href={release.downloads.win64} download={`fbide-${release.version}-win64.zip`}><DownloadIcon />64-bit</a>
-                            <a class="btn btn-sm btn-primary" href={release.downloads.win32} download={`fbide-${release.version}-win32.zip`}><DownloadIcon />32-bit</a>
+                        <div class="download-card-row">
+                            <div class="meta">
+                                <h3><img class="platform-icon platform-icon-img" src="/images/icons/installer.png" alt="" width="32" height="32" /> Installer</h3>
+                                <p class="mb-0">
+                                    Bundles FBIde and the FreeBASIC {release.fbcVersion} compiler.
+                                </p>
+                            </div>
+                            <div class="download-card-actions">
+                                <a class="btn btn-sm btn-primary" href={release.downloads.win64Setup} download={`fbide-${release.version}-win64-setup.exe`}><DownloadIcon />64-bit</a>
+                                <a class="btn btn-sm btn-primary" href={release.downloads.win32Setup} download={`fbide-${release.version}-win32-setup.exe`}><DownloadIcon />32-bit</a>
+                            </div>
                         </div>
+                        <div class="download-card-row">
+                            <div class="meta">
+                                <h3><span aria-hidden="true">📦</span> Portable (.zip)</h3>
+                                <p class="mb-0">
+                                    Unzip anywhere and run <code>fbide.exe</code>.
+                                </p>
+                            </div>
+                            <div class="download-card-actions">
+                                <a class="btn btn-sm btn-primary" href={release.downloads.win64} download={`fbide-${release.version}-win64.zip`}><DownloadIcon />64-bit</a>
+                                <a class="btn btn-sm btn-primary" href={release.downloads.win32} download={`fbide-${release.version}-win32.zip`}><DownloadIcon />32-bit</a>
+                                <a class="btn btn-sm btn-primary" href={release.downloads.winArm64} download={`fbide-${release.version}-winarm64.zip`}><DownloadIcon />ARM64</a>
+                            </div>
+                        </div>
+                        <p class="text-muted small mb-0 mt-3">Windows 7 and up.</p>
                     </div>
 
                     <div class="download-card">
@@ -82,7 +97,8 @@ const sourceHref = `${release.githubRepo}/releases`;
                             </p>
                         </div>
                         <div class="download-card-actions">
-                            <a class="btn btn-sm btn-primary" href={release.downloads.linux64} download={`fbide-${release.version}-x86_64.AppImage`}><DownloadIcon />64-bit AppImage</a>
+                            <a class="btn btn-sm btn-primary" href={release.downloads.linux64} download={`fbide-${release.version}-x86_64.AppImage`}><DownloadIcon />x86-64 AppImage</a>
+                            <a class="btn btn-sm btn-primary" href={release.downloads.linuxArm64} download={`fbide-${release.version}-aarch64.AppImage`}><DownloadIcon />ARM64 AppImage</a>
                         </div>
                     </div>
 
@@ -124,6 +140,17 @@ const sourceHref = `${release.githubRepo}/releases`;
                         <a class="btn btn-outline-primary" href="https://www.freebasic.net/" rel="noopener noreferrer" target="_blank">
                             Download FreeBASIC &raquo;
                         </a>
+                    </p>
+                    <p class="text-muted small mb-2">
+                        <strong>Older Windows:</strong> the installer bundles a modern FreeBASIC
+                        ({release.fbcVersion}), which may not run on older releases. There you're
+                        better off with the portable zip and a matching FreeBASIC build installed
+                        manually.
+                    </p>
+                    <p class="text-muted small mb-0">
+                        <strong>macOS:</strong> FreeBASIC has no official macOS release. A community
+                        port is available from <a href="https://deb.fbxl.net/" rel="noopener noreferrer" target="_blank">deb.fbxl.net</a>
+                        — see the <a href="https://www.freebasic.net/forum/viewtopic.php?t=33643" rel="noopener noreferrer" target="_blank">forum thread</a> for details.
                     </p>
                 </aside>
             </div>
