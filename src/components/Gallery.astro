@@ -11,6 +11,7 @@ interface GalleryItem {
     src: string;
     caption: string;
     thumb?: string;
+    stripThumb?: string;
 }
 
 const gallery = galleryData as GalleryItem[];
@@ -34,7 +35,7 @@ const gallery = galleryData as GalleryItem[];
                     data-index={index}
                     aria-label={item.caption}
                 >
-                    <img src={item.thumb ?? item.src} alt={item.caption} loading="lazy" />
+                    <img src={item.stripThumb ?? item.thumb ?? item.src} alt={item.caption} width="68" height="51" loading="lazy" />
                 </button>
             </li>
         ))}
