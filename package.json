@@ -14,13 +14,13 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
-    "astro": "^6.4.8"
+    "astro": "^7.1.3"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
     "bootstrap": "^5.3.8",
     "purgecss": "^8.0.0",
-    "sass": "^1.101.0",
+    "sass": "^1.102.0",
     "typescript": "^6.0.3"
   }
 }
