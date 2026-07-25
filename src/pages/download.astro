@@ -17,8 +17,8 @@ const sourceHref = `${release.githubRepo}/releases`;
                 <div class="col-md-8">
                     <h1 class="h2 mb-1">Download FBIde {release.version}</h1>
                     <p class="text-muted mb-4">
-                        Released {release.releaseDate}
-                        &middot; <a href={changelogHref}>Changelog</a>
+                        Released {release.releaseDate} &middot;{" "}
+                        <a href={changelogHref}>Changelog</a>
                         {release.isPrerelease && (<> &middot; <span class="badge text-bg-warning align-middle">Pre-release</span></>)}
                     </p>
 
