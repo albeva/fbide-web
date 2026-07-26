@@ -1,11 +1,8 @@
 # FBIde website
 
-Marketing site for [FBIde](https://github.com/albeva/fbide) — built with
-[Astro](https://astro.build) and Bootstrap 5. Static, no JS framework, no
-PHP, no jQuery. Bootstrap and its bundle script are pulled from a CDN
+Website for [FBIde](https://github.com/albeva/fbide) — built with
+[Astro](https://astro.build) and Bootstrap 5. Bootstrap and its bundle script are pulled from a CDN
 so the build has zero compiled JS of its own.
-
-Replicates the look and feel of the original 2012-era PHP site.
 
 ## Layout
 
